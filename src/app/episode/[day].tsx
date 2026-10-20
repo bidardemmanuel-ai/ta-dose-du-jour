@@ -1,57 +1,55 @@
 import { Stack, useLocalSearchParams } from 'expo-router';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { ThemedView } from '@/components/themed-view';
 
-type Message = { from: 'inconnu' | 'moi'; text: string; time: string };
+type Episode = { title: string; paragraphs: string[] };
 
-const EPISODE_CONTENT: Record<string, { title: string; messages: Message[] }> = {
+const EPISODES: Record<string, Episode> = {
   '1': {
     title: 'Le premier message',
-    messages: [
-      { from: 'inconnu', text: 'Salut. Tu me reconnais pas, c’est normal.', time: '18:42' },
-      { from: 'moi', text: 'C’est qui ?', time: '18:43' },
-      { from: 'inconnu', text: 'Quelqu’un qui sait où ton frère a passé sa nuit.', time: '18:43' },
-      { from: 'moi', text: 'Mon frère est rentré hier à 23h. Je l’ai vu.', time: '18:44' },
-      { from: 'inconnu', text: 'Non. Tu as vu quelqu’un qui lui ressemble.', time: '18:44' },
-      { from: 'inconnu', text: 'Regarde la boîte aux lettres du 14. Maintenant.', time: '18:45' },
-      { from: 'moi', text: '…', time: '18:46' },
-      { from: 'inconnu', text: 'Alors ?', time: '18:47' },
-      { from: 'moi', text: 'Il y a une photo. C’est pas possible.', time: '18:48' },
-      { from: 'inconnu', text: 'Si. Demain, 21h, même endroit. Viens seul. Ou ne viens pas.', time: '18:49' },
+    paragraphs: [
+      '18h42. Le téléphone vibre sur la table de la cuisine. Un numéro inconnu, composé de chiffres qui ne disent rien. Tu hésites. Tu réponds quand même, comme toujours, comme tout le monde.',
+      '« Salut. Tu me reconnais pas, c’est normal. »',
+      'Tu regardes l’écran. Trois mots tapés trop vite, sans ponctuation. Tu demandes qui c’est. La réponse arrive en une phrase qui te glace davantage que la première : « Quelqu’un qui sait où ton frère a passé sa nuit. »',
+      'Tu te redresses. Ton frère est rentré hier soir, 23h, tu l’as vu passer dans le couloir, son odeur de tabac froid et de pluie. Tu tapis la réponse, les mains moites : il est rentré, tu l’as vu.',
+      '« Non. Tu as vu quelqu’un qui lui ressemble. »',
+      'Il y a quelque chose dans la formulation, une certitude tranquille, qui te fait descendre vérifier. La boîte aux lettres du 14, dit le message suivant. Maintenant.',
+      'L’escalier craque. Dans la boîte, une photo. Ton frère, de profil, devant un hangar que tu reconnais trop bien : la zone Nord, celle où personne ne va, même pas les gosses. L’heure sur la photo : 3h47. Cette nuit.',
+      'Ton téléphone vibre encore. « Si. Demain, 21h, même endroit. Viens seul. Ou ne viens pas. »',
     ],
   },
   '2': {
     title: 'La photo',
-    messages: [
-      { from: 'inconnu', text: 'Sur la photo, regarde bien le fond.', time: '07:12' },
-      { from: 'moi', text: 'Je regarde depuis ce matin. Je vois rien.', time: '08:01' },
-      { from: 'inconnu', text: 'Le hangar. Derrière ton frère. Celui de la zone Nord.', time: '08:02' },
-      { from: 'moi', text: 'Personne va là-bas. Même pas les gosses.', time: '08:03' },
-      { from: 'inconnu', text: 'Exactement.', time: '08:03' },
-      { from: 'moi', text: 'Pourquoi vous me faites ça ?', time: '08:05' },
-      { from: 'inconnu', text: 'Parce que lui a pris quelque chose qui ne lui appartient pas.', time: '08:06' },
-      { from: 'inconnu', text: 'Et que toi, tu peux le rendre avant jeudi.', time: '08:06' },
+    paragraphs: [
+      'Tu as dormi deux heures. La photo est restée sur la table, face vers le bas, comme on retourne une carte qu’on ne veut plus voir et qu’on n’ose pas jeter.',
+      '07h12. Premier message de la journée : « Sur la photo, regarde bien le fond. »',
+      'Tu la regardes depuis ce matin. Le hangar, les tôles, la pluie. Ton frère au premier plan, l’air buté, cette façon qu’il a de rentrer le menton quand il veut pas qu’on voie qu’il a peur. Tu vois rien d’autre.',
+      '« Le hangar. Derrière ton frère. Celui de la zone Nord. »',
+      'Personne va là-bas. Même pas les gosses. Tu tapis la question qui te brûle depuis la veille : pourquoi vous me faites ça ? La réponse tombe, plate, sans émotion :',
+      '« Parce que lui a pris quelque chose qui ne lui appartient pas. Et que toi, tu peux le rendre avant jeudi. »',
+      'Tu regardes la photo une dernière fois. Et pour la première fois, tu remarques les mains de ton frère. Cachées derrière son dos.',
     ],
   },
   '3': {
     title: 'Le rendez-vous',
-    messages: [
-      { from: 'moi', text: 'Je suis là. Seul, comme demandé.', time: '21:00' },
-      { from: 'inconnu', text: 'Je sais. Je te vois d’ici.', time: '21:01' },
-      { from: 'moi', text: 'Vous êtes où ??', time: '21:01' },
-      { from: 'inconnu', text: 'Réglage de compte à la Chapelle Nord : un mot, et ton frère passe la nuit en garde à vue. Ton choix.', time: '21:02' },
-      { from: 'moi', text: 'C’est du chantage.', time: '21:02' },
-      { from: 'inconnu', text: 'C’est une offre. Le chantage, c’est après si tu refuses.', time: '21:03' },
-      { from: 'inconnu', text: 'Réfléchis bien jusqu’à demain 18h. Après, je parle à la police. Ou pire.', time: '21:03' },
+    paragraphs: [
+      '21h00, sous le pont. Le vent sent le chaud-froid de la Chapelle Nord, ce mélange de goudron mouillé et de poulet grillé qui remonte du kebab d’à côté. Tu es venu seul, comme demandé. Ton cœur tape plus fort que tes pas.',
+      '« Je sais. Je te vois d’ici. »',
+      'Tu te retournes brusquement. Personne. Juste les voitures sur le pont, au-dessus, et leurs phares qui balayent la rampe. Tu demandes où il est. Pas de réponse pendant trente secondes. Trente secondes, c’est long.',
+      'Puis : « Réglage de compte à la Chapelle Nord : un mot, et ton frère passe la nuit en garde à vue. Ton choix. »',
+      'C’est du chantage, tu tapis, les dents serrées. La réponse arrive, presque gentille :',
+      '« C’est une offre. Le chantage, c’est après, si tu refuses. »',
+      '« Réfléchis bien jusqu’à demain 18h. Après, je parle à la police. Ou pire. »',
+      'Le téléphone se tait. Tu restes un moment sous le pont, seul avec le bruit des voitures, à regarder la photo que tu n’aurais jamais dû recevoir.',
     ],
   },
 };
 
 export default function EpisodeScreen() {
   const { day } = useLocalSearchParams<{ day: string }>();
-  const episode = EPISODE_CONTENT[day ?? '1'] ?? { title: 'Épisode à venir', messages: [] };
+  const episode = EPISODES[day ?? '1'] ?? { title: 'Épisode à venir', paragraphs: [] };
 
   return (
     <ThemedView style={styles.container}>
@@ -67,11 +65,8 @@ export default function EpisodeScreen() {
       />
       <SafeAreaView style={styles.safeArea} edges={['left', 'right']}>
         <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
-          {episode.messages.map((msg, i) => (
-            <View key={i} style={[styles.bubble, msg.from === 'moi' ? styles.bubbleMine : styles.bubbleTheirs]}>
-              <Text style={styles.bubbleText}>{msg.text}</Text>
-              <Text style={[styles.time, msg.from === 'moi' && styles.timeMine]}>{msg.time}</Text>
-            </View>
+          {episode.paragraphs.map((p, i) => (
+            <Text key={i} style={styles.paragraph}>{p}</Text>
           ))}
           <Text style={styles.cliffhanger}>Fin de l’épisode. La suite demain.</Text>
         </ScrollView>
@@ -84,39 +79,14 @@ const styles = StyleSheet.create({
   container: { flex: 1 },
   safeArea: { flex: 1 },
   content: {
-    padding: 16,
-    gap: 10,
-    paddingBottom: 40,
+    padding: 24,
+    paddingBottom: 48,
+    gap: 16,
   },
-  bubble: {
-    maxWidth: '80%',
-    borderRadius: 18,
-    paddingHorizontal: 14,
-    paddingVertical: 10,
-    gap: 4,
-  },
-  bubbleMine: {
-    alignSelf: 'flex-end',
-    backgroundColor: '#2E7D32',
-    borderBottomRightRadius: 4,
-  },
-  bubbleTheirs: {
-    alignSelf: 'flex-start',
-    backgroundColor: '#26262A',
-    borderBottomLeftRadius: 4,
-  },
-  bubbleText: {
-    color: '#fff',
-    fontSize: 15,
-    lineHeight: 21,
-  },
-  time: {
-    color: 'rgba(255,255,255,0.45)',
-    fontSize: 10,
-    alignSelf: 'flex-end',
-  },
-  timeMine: {
-    color: 'rgba(255,255,255,0.6)',
+  paragraph: {
+    color: '#EDEDF0',
+    fontSize: 16,
+    lineHeight: 26,
   },
   cliffhanger: {
     color: 'rgba(255,255,255,0.4)',
