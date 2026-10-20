@@ -1,4 +1,4 @@
-import { Stack } from 'expo-router';
+import { Link, Stack } from 'expo-router';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -7,10 +7,10 @@ import { ThemedView } from '@/components/themed-view';
 import { BottomTabInset } from '@/constants/theme';
 
 const EPISODES = [
-  { day: 'J1', title: 'Le premier message', teaser: 'Un numéro inconnu. Une photo. Et un choix que tu ne pourras pas annuler.', unlocked: true, read: true },
-  { day: 'J2', title: 'La photo', teaser: 'Sur la photo : ton frère. Dans un endroit où il n’aurait jamais dû mettre les pieds.', unlocked: true, read: true },
-  { day: 'J3', title: 'Le rendez-vous', teaser: '21h, sous le pont. Viens seul. Ou ne viens pas.', unlocked: true, read: false },
-  { day: 'J4', title: '???', teaser: 'Débloque ton épisode de demain.', unlocked: false, read: false },
+  { day: 1, label: 'J1', title: 'Le premier message', teaser: 'Un numéro inconnu. Une photo. Et un choix que tu ne pourras pas annuler.', unlocked: true, read: true },
+  { day: 2, label: 'J2', title: 'La photo', teaser: 'Sur la photo : ton frère. Dans un endroit où il n’aurait jamais dû mettre les pieds.', unlocked: true, read: true },
+  { day: 3, label: 'J3', title: 'Le rendez-vous', teaser: '21h, sous le pont. Viens seul. Ou ne viens pas.', unlocked: true, read: false },
+  { day: 4, label: 'J4', title: '???', teaser: 'Débloque ton épisode de demain.', unlocked: false, read: false },
 ];
 
 const TOTAL_DAYS = 30;
@@ -19,12 +19,7 @@ const UNLOCKED_DAYS = 3;
 export default function HomeScreen() {
   return (
     <ThemedView style={styles.container}>
-      {/* Masque le header natif (bouton appareil photo) et force le mode sombre */}
-      <Stack.Screen
-        options={{
-          headerShown: false,
-        }}
-      />
+      <Stack.Screen options={{ headerShown: false }} />
       <SafeAreaView style={styles.safeArea} edges={['top', 'left', 'right']}>
         <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
           <View style={styles.header}>
@@ -56,26 +51,40 @@ export default function HomeScreen() {
 
           <Text style={styles.sectionTitle}>Tes épisodes</Text>
 
-          {EPISODES.map((ep) => (
-            <View key={ep.day} style={[styles.episode, !ep.unlocked && styles.episodeLocked]}>
-              <View style={[styles.dayBadge, ep.unlocked ? styles.dayBadgeActive : styles.dayBadgeMuted]}>
-                <Text style={[styles.dayBadgeText, !ep.unlocked && styles.dayBadgeTextMuted]}>{ep.day}</Text>
+          {EPISODES.map((ep) => {
+            const row = (
+              <View style={[styles.episode, !ep.unlocked && styles.episodeLocked]}>
+                <View style={[styles.dayBadge, ep.unlocked ? styles.dayBadgeActive : styles.dayBadgeMuted]}>
+                  <Text style={[styles.dayBadgeText, !ep.unlocked && styles.dayBadgeTextMuted]}>{ep.label}</Text>
+                </View>
+                <View style={styles.episodeBody}>
+                  <Text style={[styles.episodeTitle, !ep.unlocked && styles.episodeTitleMuted]}>
+                    {ep.title}
+                  </Text>
+                  <Text style={styles.episodeTeaser}>{ep.teaser}</Text>
+                </View>
+                {ep.read ? (
+                  <Text style={styles.check}>✓</Text>
+                ) : ep.unlocked ? (
+                  <Text style={styles.newDot}>●</Text>
+                ) : (
+                  <Text style={styles.lock}>🔒</Text>
+                )}
               </View>
-              <View style={styles.episodeBody}>
-                <Text style={[styles.episodeTitle, !ep.unlocked && styles.episodeTitleMuted]}>
-                  {ep.title}
-                </Text>
-                <Text style={styles.episodeTeaser}>{ep.teaser}</Text>
-              </View>
-              {ep.read ? (
-                <Text style={styles.check}>✓</Text>
-              ) : ep.unlocked ? (
-                <Text style={styles.newDot}>●</Text>
-              ) : (
-                <Text style={styles.lock}>🔒</Text>
-              )}
-            </View>
-          ))}
+            );
+
+            if (!ep.unlocked) {
+              return <View key={ep.label} style={styles.disabledRow}>{row}</View>;
+            }
+
+            return (
+              <Link key={ep.label} href={`/episode/${ep.day}`} asChild>
+                <Pressable style={({ pressed }) => [styles.pressableRow, pressed && styles.rowPressed]}>
+                  {row}
+                </Pressable>
+              </Link>
+            );
+          })}
 
           <Text style={styles.footer}>Abonnement 4,99 €/mois · Annulable à tout moment</Text>
         </ScrollView>
@@ -181,6 +190,16 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '700',
     marginTop: 10,
+  },
+  pressableRow: {
+    borderRadius: 16,
+  },
+  rowPressed: {
+    opacity: 0.7,
+    transform: [{ scale: 0.98 }],
+  },
+  disabledRow: {
+    opacity: 1,
   },
   episode: {
     flexDirection: 'row',
