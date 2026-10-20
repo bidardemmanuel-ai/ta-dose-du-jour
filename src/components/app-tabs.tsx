@@ -1,11 +1,11 @@
 import { NativeTabs } from 'expo-router/unstable-native-tabs';
-import { useColorScheme } from 'react-native';
 
 import { Colors } from '@/constants/theme';
 
+// Couleurs sombres forcées : la barre d'onglets reste noire
+// quel que soit le réglage clair/sombre de l'iPhone.
 export default function AppTabs() {
-  const scheme = useColorScheme();
-  const colors = Colors[scheme === 'unspecified' ? 'light' : scheme];
+  const colors = Colors.dark;
 
   return (
     <NativeTabs
