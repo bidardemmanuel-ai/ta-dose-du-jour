@@ -6,10 +6,10 @@ import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 
 const EPISODES = [
-  { day: 1, label: 'J1', title: 'Le premier message', teaser: 'Un num\u00e9ro inconnu. Une photo. Et un choix que tu ne pourras pas annuler.', unlocked: true, read: true },
-  { day: 2, label: 'J2', title: 'La photo', teaser: 'Sur la photo : ton fr\u00e8re. Dans un endroit o\u00f9 il n\u2019aurait jamais d\u00fb mettre les pieds.', unlocked: true, read: true },
+  { day: 1, label: 'J1', title: 'Le premier message', teaser: 'Un numéro inconnu. Une photo. Et un choix que tu ne pourras pas annuler.', unlocked: true, read: true },
+  { day: 2, label: 'J2', title: 'La photo', teaser: 'Sur la photo : ton frère. Dans un endroit où il n’aurait jamais dû mettre les pieds.', unlocked: true, read: true },
   { day: 3, label: 'J3', title: 'Le rendez-vous', teaser: '21h, sous le pont. Viens seul. Ou ne viens pas.', unlocked: true, read: false },
-  { day: 4, label: 'J4', title: '???', teaser: 'D\u00e9bloque ton \u00e9pisode de demain.', unlocked: false, read: false },
+  { day: 4, label: 'J4', title: '???', teaser: 'Débloque ton épisode de demain.', unlocked: false, read: false },
 ];
 
 const TOTAL_DAYS = 30;
@@ -30,24 +30,24 @@ export default function HomeScreen() {
               onPress={() => {}}
               hitSlop={8}
             >
-              <Text style={styles.subscribeText} numberOfLines={1} adjustsFontSizeToFit>S\u2019abonner</Text>
+              <Text style={styles.subscribeText} numberOfLines={1} adjustsFontSizeToFit>S’abonner</Text>
             </Pressable>
           </View>
 
           <View style={styles.card}>
             <Text style={styles.cardKicker}>OCTOBRE 2026</Text>
             <Text style={styles.cardTitle}>La Chapelle Nord</Text>
-            <Text style={styles.cardTagline}>30 jours. 30 \u00e9pisodes. Une banlieue qui br\u00fble. \uD83D\uDD25</Text>
+            <Text style={styles.cardTagline}>30 jours. 30 épisodes. Une banlieue qui brûle. 🔥</Text>
 
             <View style={styles.progressRow}>
-              <Text style={styles.progressLabel}>J3 / {TOTAL_DAYS} d\u00e9bloqu\u00e9s</Text>
+              <Text style={styles.progressLabel}>J3 / {TOTAL_DAYS} débloqués</Text>
               <View style={styles.progressTrack}>
                 <View style={[styles.progressFill, { width: ((UNLOCKED_DAYS / TOTAL_DAYS) * 100) + '%' }]} />
               </View>
             </View>
           </View>
 
-          <Text style={styles.sectionTitle}>Tes \u00e9pisodes</Text>
+          <Text style={styles.sectionTitle}>Tes épisodes</Text>
 
           {EPISODES.map((ep) => {
             const row = (
@@ -84,7 +84,7 @@ export default function HomeScreen() {
             );
           })}
 
-          <Text style={styles.footer}>Abonnement 4,99 \u20AC/mois \u00B7 Annulable \u00e0 tout moment</Text>
+          <Text style={styles.footer}>Abonnement 4,99 €/mois · Annulable à tout moment</Text>
         </ScrollView>
       </SafeAreaView>
     </ThemedView>
