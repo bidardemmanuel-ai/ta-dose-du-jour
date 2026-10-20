@@ -1,3 +1,4 @@
+import { Stack } from 'expo-router';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -18,15 +19,25 @@ const UNLOCKED_DAYS = 3;
 export default function HomeScreen() {
   return (
     <ThemedView style={styles.container}>
-      <SafeAreaView style={styles.safeArea}>
+      {/* Masque le header natif (bouton appareil photo) et force le mode sombre */}
+      <Stack.Screen
+        options={{
+          headerShown: false,
+        }}
+      />
+      <SafeAreaView style={styles.safeArea} edges={['top', 'left', 'right']}>
         <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
           <View style={styles.header}>
-            <View>
+            <View style={styles.headerLeft}>
               <ThemedText type="small" style={styles.brand}>MINI ROMANS</ThemedText>
               <Text style={styles.title}>Ta dose du jour</Text>
             </View>
-            <Pressable style={styles.subscribeButton} onPress={() => {}}>
-              <Text style={styles.subscribeText}>S’abonner</Text>
+            <Pressable
+              style={({ pressed }) => [styles.subscribeButton, pressed && styles.subscribePressed]}
+              onPress={() => {}}
+              hitSlop={8}
+            >
+              <Text style={styles.subscribeText} numberOfLines={1} adjustsFontSizeToFit>S’abonner</Text>
             </Pressable>
           </View>
 
@@ -77,7 +88,8 @@ const styles = StyleSheet.create({
   container: { flex: 1 },
   safeArea: { flex: 1 },
   content: {
-    padding: 20,
+    paddingHorizontal: 20,
+    paddingTop: 16,
     paddingBottom: BottomTabInset + 40,
     gap: 14,
   },
@@ -85,7 +97,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    gap: 12,
     marginBottom: 6,
+  },
+  headerLeft: {
+    flexShrink: 1,
   },
   brand: {
     letterSpacing: 2,
@@ -98,9 +114,15 @@ const styles = StyleSheet.create({
   },
   subscribeButton: {
     backgroundColor: '#FF4D4D',
-    paddingHorizontal: 16,
+    paddingHorizontal: 18,
     paddingVertical: 10,
     borderRadius: 999,
+    flexShrink: 0,
+    alignSelf: 'flex-start',
+  },
+  subscribePressed: {
+    opacity: 0.8,
+    transform: [{ scale: 0.97 }],
   },
   subscribeText: {
     color: '#fff',
