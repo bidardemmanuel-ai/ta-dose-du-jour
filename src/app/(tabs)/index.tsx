@@ -5,15 +5,29 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 
-const EPISODES = [
-  { day: 1, label: 'J1', title: 'Le premier message', teaser: 'Un numéro inconnu. Une photo. Et un choix que tu ne pourras pas annuler.', unlocked: true, read: true },
-  { day: 2, label: 'J2', title: 'La photo', teaser: 'Sur la photo : ton frère. Dans un endroit où il n’aurait jamais dû mettre les pieds.', unlocked: true, read: true },
-  { day: 3, label: 'J3', title: 'Le rendez-vous', teaser: '21h, sous le pont. Viens seul. Ou ne viens pas.', unlocked: true, read: false },
-  { day: 4, label: 'J4', title: '???', teaser: 'Débloque ton épisode de demain.', unlocked: false, read: false },
-];
+// Histoire en cours : en vedette, lisible tout de suite.
+const FEATURED = {
+  id: 'chapelle-nord',
+  emoji: '🔥',
+  kicker: 'OCTOBRE 2026 · EN COURS',
+  title: 'La Chapelle Nord',
+  tagline: '30 jours. 30 épisodes. Une banlieue qui brûle.',
+  episodes: 30,
+  unlocked: 3,
+};
 
-const TOTAL_DAYS = 30;
-const UNLOCKED_DAYS = 3;
+// Catalogue provisoire : 9 autres minis romans à venir.
+const CATALOG = [
+  { id: '1', emoji: '🧀', title: 'Le Fromage de la Honte', tagline: 'Trafic de Pont-Lévêque à Caen. Deux losers, une 2CV, zéro plan.', genre: 'Polar absurde' },
+  { id: '2', emoji: '🌊', title: 'La Marée Noire', tagline: 'Un pêcheur de Dieppe remonte dans ses filets ce que la mer devait garder.', genre: 'Thriller' },
+  { id: '3', emoji: '🎭', title: 'L Applaudissement', tagline: 'Une comédienne reçoit des ovations pour une pièce qu’elle n’a jamais jouée.', genre: 'Mystère' },
+  { id: '4', emoji: '🏠', title: 'L Appart 3B', tagline: 'Le locataire d’en dessous entend des voix. Sauf que l’appart est vide.', genre: 'Huis clos' },
+  { id: '5', emoji: '🚂', title: 'Le Dernier Terminus', tagline: 'Chaque nuit, un train s’arrête en gare. Il n’est pas au tableau des horaires.', genre: 'Fantastique' },
+  { id: '6', emoji: '💍', title: 'Le Témoin Muet', tagline: 'Au mariage de sa soeur, il reconnaît l’homme que tout le monde croyait mort.', genre: 'Polar' },
+  { id: '7', emoji: '📱', title: 'Compte à Rebours', tagline: 'Son téléphone annonce chaque matin l’heure exacte de sa mort. J-30.', genre: 'Thriller' },
+  { id: '8', emoji: '🐢', title: 'La Vitesse de l Escargot', tagline: 'Le braquage le plus lent de l’histoire de France. 30 jours de fuite.', genre: 'Comédie noire' },
+  { id: '9', emoji: '🕯️', title: 'La Veillée', tagline: 'Onze personnes, une chambre funéraire, et un cercueil qu’on n’ouvre pas.', genre: 'Huis clos' },
+];
 
 export default function HomeScreen() {
   return (
@@ -34,55 +48,43 @@ export default function HomeScreen() {
             </Pressable>
           </View>
 
-          <View style={styles.card}>
-            <Text style={styles.cardKicker}>OCTOBRE 2026</Text>
-            <Text style={styles.cardTitle}>La Chapelle Nord</Text>
-            <Text style={styles.cardTagline}>30 jours. 30 épisodes. Une banlieue qui brûle. 🔥</Text>
+          <Text style={styles.sectionTitle}>Histoire du mois</Text>
 
-            <View style={styles.progressRow}>
-              <Text style={styles.progressLabel}>J3 / {TOTAL_DAYS} débloqués</Text>
-              <View style={styles.progressTrack}>
-                <View style={[styles.progressFill, { width: ((UNLOCKED_DAYS / TOTAL_DAYS) * 100) + '%' }]} />
+          <Link href="/episode/1" asChild>
+            <Pressable style={({ pressed }) => [styles.featured, pressed && styles.featuredPressed]}>
+              <View style={styles.featuredTop}>
+                <Text style={styles.featuredEmoji}>{FEATURED.emoji}</Text>
+                <View style={styles.featuredHead}>
+                  <Text style={styles.featuredKicker}>{FEATURED.kicker}</Text>
+                  <Text style={styles.featuredTitle}>{FEATURED.title}</Text>
+                  <Text style={styles.featuredTagline}>{FEATURED.tagline}</Text>
+                </View>
               </View>
-            </View>
+              <View style={styles.progressRow}>
+                <Text style={styles.progressLabel}>J{FEATURED.unlocked} / {FEATURED.episodes} débloqués</Text>
+                <View style={styles.progressTrack}>
+                  <View style={[styles.progressFill, { width: ((FEATURED.unlocked / FEATURED.episodes) * 100) + '%' }]} />
+                </View>
+              </View>
+              <Text style={styles.featuredCta}>Continuer la lecture →</Text>
+            </Pressable>
+          </Link>
+
+          <Text style={styles.sectionTitle}>Bientôt disponibles</Text>
+
+          <View style={styles.grid}>
+            {CATALOG.map((story) => (
+              <View key={story.id} style={styles.storyCard}>
+                <Text style={styles.storyEmoji}>{story.emoji}</Text>
+                <Text style={styles.storyGenre}>{story.genre}</Text>
+                <Text style={styles.storyTitle}>{story.title}</Text>
+                <Text style={styles.storyTagline}>{story.tagline}</Text>
+                <View style={styles.soonBadge}>
+                  <Text style={styles.soonText}>Bientôt</Text>
+                </View>
+              </View>
+            ))}
           </View>
-
-          <Text style={styles.sectionTitle}>Tes épisodes</Text>
-
-          {EPISODES.map((ep) => {
-            const row = (
-              <View style={[styles.episode, !ep.unlocked && styles.episodeLocked]}>
-                <View style={[styles.dayBadge, ep.unlocked ? styles.dayBadgeActive : styles.dayBadgeMuted]}>
-                  <Text style={[styles.dayBadgeText, !ep.unlocked && styles.dayBadgeTextMuted]}>{ep.label}</Text>
-                </View>
-                <View style={styles.episodeBody}>
-                  <Text style={[styles.episodeTitle, !ep.unlocked && styles.episodeTitleMuted]}>
-                    {ep.title}
-                  </Text>
-                  <Text style={styles.episodeTeaser}>{ep.teaser}</Text>
-                </View>
-                {ep.read ? (
-                  <Text style={styles.check}>✓</Text>
-                ) : ep.unlocked ? (
-                  <Text style={styles.newDot}>●</Text>
-                ) : (
-                  <Text style={styles.lock}>🔒</Text>
-                )}
-              </View>
-            );
-
-            if (!ep.unlocked) {
-              return <View key={ep.label}>{row}</View>;
-            }
-
-            return (
-              <Link key={ep.label} href={'/episode/' + ep.day} asChild>
-                <Pressable style={({ pressed }) => [styles.pressableRow, pressed && styles.rowPressed]}>
-                  {row}
-                </Pressable>
-              </Link>
-            );
-          })}
 
           <Text style={styles.footer}>Abonnement 4,99 €/mois · Annulable à tout moment</Text>
         </ScrollView>
@@ -136,35 +138,55 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     fontSize: 14,
   },
-  card: {
+  sectionTitle: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: '700',
+    marginTop: 8,
+  },
+  featured: {
     backgroundColor: '#C0392B',
     borderRadius: 20,
     padding: 22,
-    gap: 8,
+    gap: 12,
     shadowColor: '#000',
     shadowOpacity: 0.3,
     shadowRadius: 10,
     shadowOffset: { width: 0, height: 4 },
     elevation: 6,
   },
-  cardKicker: {
-    color: 'rgba(255,255,255,0.75)',
-    fontSize: 12,
-    fontWeight: '700',
-    letterSpacing: 2,
+  featuredPressed: {
+    opacity: 0.85,
+    transform: [{ scale: 0.98 }],
   },
-  cardTitle: {
+  featuredTop: {
+    flexDirection: 'row',
+    gap: 14,
+  },
+  featuredEmoji: {
+    fontSize: 34,
+  },
+  featuredHead: {
+    flex: 1,
+    gap: 2,
+  },
+  featuredKicker: {
+    color: 'rgba(255,255,255,0.75)',
+    fontSize: 11,
+    fontWeight: '700',
+    letterSpacing: 1.5,
+  },
+  featuredTitle: {
     color: '#fff',
-    fontSize: 26,
+    fontSize: 24,
     fontWeight: '800',
   },
-  cardTagline: {
+  featuredTagline: {
     color: 'rgba(255,255,255,0.9)',
-    fontSize: 15,
-    lineHeight: 21,
+    fontSize: 14,
+    lineHeight: 20,
   },
   progressRow: {
-    marginTop: 10,
     gap: 8,
   },
   progressLabel: {
@@ -183,79 +205,56 @@ const styles = StyleSheet.create({
     borderRadius: 999,
     backgroundColor: '#FFD166',
   },
-  sectionTitle: {
-    color: '#fff',
-    fontSize: 18,
+  featuredCta: {
+    color: '#FFD166',
+    fontSize: 14,
     fontWeight: '700',
-    marginTop: 10,
   },
-  pressableRow: {
-    borderRadius: 16,
-  },
-  rowPressed: {
-    opacity: 0.7,
-    transform: [{ scale: 0.98 }],
-  },
-  episode: {
+  grid: {
     flexDirection: 'row',
-    alignItems: 'center',
+    flexWrap: 'wrap',
+    gap: 12,
+  },
+  storyCard: {
+    width: '48%',
+    flexGrow: 1,
     backgroundColor: 'rgba(255,255,255,0.06)',
     borderRadius: 16,
     padding: 16,
-    gap: 14,
+    gap: 6,
   },
-  episodeLocked: {
-    opacity: 0.5,
+  storyEmoji: {
+    fontSize: 28,
   },
-  dayBadge: {
-    width: 44,
-    height: 44,
-    borderRadius: 12,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  dayBadgeActive: {
-    backgroundColor: '#2ECC71',
-  },
-  dayBadgeMuted: {
-    backgroundColor: 'rgba(255,255,255,0.15)',
-  },
-  dayBadgeText: {
-    color: '#fff',
-    fontWeight: '800',
-    fontSize: 15,
-  },
-  dayBadgeTextMuted: {
-    color: 'rgba(255,255,255,0.7)',
-  },
-  episodeBody: {
-    flex: 1,
-    gap: 4,
-  },
-  episodeTitle: {
-    color: '#fff',
-    fontSize: 16,
+  storyGenre: {
+    color: 'rgba(255,255,255,0.45)',
+    fontSize: 11,
     fontWeight: '700',
+    letterSpacing: 1,
+    textTransform: 'uppercase',
   },
-  episodeTitleMuted: {
-    color: 'rgba(255,255,255,0.7)',
-  },
-  episodeTeaser: {
-    color: 'rgba(255,255,255,0.6)',
-    fontSize: 13,
-    lineHeight: 18,
-  },
-  check: {
-    color: '#2ECC71',
-    fontSize: 18,
+  storyTitle: {
+    color: '#fff',
+    fontSize: 16,
     fontWeight: '800',
   },
-  newDot: {
-    color: '#FF4D4D',
-    fontSize: 14,
+  storyTagline: {
+    color: 'rgba(255,255,255,0.55)',
+    fontSize: 12,
+    lineHeight: 17,
   },
-  lock: {
-    fontSize: 16,
+  soonBadge: {
+    alignSelf: 'flex-start',
+    backgroundColor: 'rgba(255,255,255,0.12)',
+    borderRadius: 999,
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+    marginTop: 4,
+  },
+  soonText: {
+    color: 'rgba(255,255,255,0.7)',
+    fontSize: 11,
+    fontWeight: '700',
   },
   footer: {
     color: 'rgba(255,255,255,0.4)',
