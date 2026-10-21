@@ -11,21 +11,22 @@ export default function TabLayout() {
           backgroundColor: '#000000',
           borderTopColor: '#1A1A1E',
         },
-        tabBarActiveTintColor: '#FF4D4D',
+        tabBarActiveTintColor: '#d8bc8f',
         tabBarInactiveTintColor: '#8A8A90',
+        tabBarLabelStyle: { fontSize: 11, fontWeight: '400' },
       }}>
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color, size }) => <Ionicons name="home" size={size} color={color} />,
+          title: 'Accueil',
+          tabBarIcon: ({ color, size }) => <Ionicons name="home-outline" size={size} color={color} />,
         }}
       />
       <Tabs.Screen
         name="explore"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color, size }) => <Ionicons name="compass" size={size} color={color} />,
+          title: 'Explorer',
+          tabBarIcon: ({ color, size }) => <Ionicons name="compass-outline" size={size} color={color} />,
         }}
       />
     </Tabs>
