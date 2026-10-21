@@ -5,10 +5,11 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 
+const ACCENT = '#d8bc8f';
+
 // Histoire en cours : en vedette, lisible tout de suite.
 const FEATURED = {
   id: 'chapelle-nord',
-  emoji: '🔥',
   kicker: 'OCTOBRE 2026 · EN COURS',
   title: 'La Chapelle Nord',
   tagline: '30 jours. 30 épisodes. Une banlieue qui brûle.',
@@ -18,15 +19,15 @@ const FEATURED = {
 
 // Catalogue provisoire : 9 autres minis romans à venir.
 const CATALOG = [
-  { id: '1', emoji: '🧀', title: 'Le Fromage de la Honte', tagline: 'Trafic de Pont-Lévêque à Caen. Deux losers, une 2CV, zéro plan.', genre: 'Polar absurde' },
-  { id: '2', emoji: '🌊', title: 'La Marée Noire', tagline: 'Un pêcheur de Dieppe remonte dans ses filets ce que la mer devait garder.', genre: 'Thriller' },
-  { id: '3', emoji: '🎭', title: 'L’Applaudissement', tagline: 'Une comédienne reçoit des ovations pour une pièce qu’elle n’a jamais jouée.', genre: 'Mystère' },
-  { id: '4', emoji: '🏠', title: 'L’Appart 3B', tagline: 'Le locataire d’en dessous entend des voix. Sauf que l’appart est vide.', genre: 'Huis clos' },
-  { id: '5', emoji: '🚂', title: 'Le Dernier Terminus', tagline: 'Chaque nuit, un train s’arrête en gare. Il n’est pas au tableau des horaires.', genre: 'Fantastique' },
-  { id: '6', emoji: '💍', title: 'Le Témoin Muet', tagline: 'Au mariage de sa sœur, il reconnaît l’homme que tout le monde croyait mort.', genre: 'Polar' },
-  { id: '7', emoji: '📱', title: 'Compte à Rebours', tagline: 'Son téléphone annonce chaque matin l’heure exacte de sa mort. J-30.', genre: 'Thriller' },
-  { id: '8', emoji: '🐢', title: 'La Vitesse de l’Escargot', tagline: 'Le braquage le plus lent de l’histoire de France. 30 jours de fuite.', genre: 'Comédie noire' },
-  { id: '9', emoji: '🕯️', title: 'La Veillée', tagline: 'Onze personnes, une chambre funéraire, et un cercueil qu’on n’ouvre pas.', genre: 'Huis clos' },
+  { id: '1', title: 'Le Fromage de la Honte', tagline: 'Trafic de Pont-Lévêque à Caen. Deux losers, une 2CV, zéro plan.', genre: 'Polar absurde' },
+  { id: '2', title: 'La Marée Noire', tagline: 'Un pêcheur de Dieppe remonte dans ses filets ce que la mer devait garder.', genre: 'Thriller' },
+  { id: '3', title: 'L’Applaudissement', tagline: 'Une comédienne reçoit des ovations pour une pièce qu’elle n’a jamais jouée.', genre: 'Mystère' },
+  { id: '4', title: 'L’Appart 3B', tagline: 'Le locataire d’en dessous entend des voix. Sauf que l’appart est vide.', genre: 'Huis clos' },
+  { id: '5', title: 'Le Dernier Terminus', tagline: 'Chaque nuit, un train s’arrête en gare. Il n’est pas au tableau des horaires.', genre: 'Fantastique' },
+  { id: '6', title: 'Le Témoin Muet', tagline: 'Au mariage de sa sœur, il reconnaît l’homme que tout le monde croyait mort.', genre: 'Polar' },
+  { id: '7', title: 'Compte à Rebours', tagline: 'Son téléphone annonce chaque matin l’heure exacte de sa mort. J-30.', genre: 'Thriller' },
+  { id: '8', title: 'La Vitesse de l’Escargot', tagline: 'Le braquage le plus lent de l’histoire de France. 30 jours de fuite.', genre: 'Comédie noire' },
+  { id: '9', title: 'La Veillée', tagline: 'Onze personnes, une chambre funéraire, et un cercueil qu’on n’ouvre pas.', genre: 'Huis clos' },
 ];
 
 export default function HomeScreen() {
@@ -52,13 +53,10 @@ export default function HomeScreen() {
 
           <Link href="/episode/1" asChild>
             <Pressable style={({ pressed }) => [styles.featured, pressed && styles.featuredPressed]}>
-              <View style={styles.featuredTop}>
-                <Text style={styles.featuredEmoji}>{FEATURED.emoji}</Text>
-                <View style={styles.featuredHead}>
-                  <Text style={styles.featuredKicker}>{FEATURED.kicker}</Text>
-                  <Text style={styles.featuredTitle}>{FEATURED.title}</Text>
-                  <Text style={styles.featuredTagline}>{FEATURED.tagline}</Text>
-                </View>
+              <View style={styles.featuredHead}>
+                <Text style={styles.featuredKicker}>{FEATURED.kicker}</Text>
+                <Text style={styles.featuredTitle}>{FEATURED.title}</Text>
+                <Text style={styles.featuredTagline}>{FEATURED.tagline}</Text>
               </View>
               <View style={styles.progressRow}>
                 <Text style={styles.progressLabel}>J{FEATURED.unlocked} / {FEATURED.episodes} débloqués</Text>
@@ -75,13 +73,10 @@ export default function HomeScreen() {
           <View style={styles.grid}>
             {CATALOG.map((story) => (
               <View key={story.id} style={styles.storyCard}>
-                <Text style={styles.storyEmoji}>{story.emoji}</Text>
                 <Text style={styles.storyGenre}>{story.genre}</Text>
                 <Text style={styles.storyTitle}>{story.title}</Text>
                 <Text style={styles.storyTagline}>{story.tagline}</Text>
-                <View style={styles.soonBadge}>
-                  <Text style={styles.soonText}>Bientôt</Text>
-                </View>
+                <Text style={styles.soonText}>Bientôt</Text>
               </View>
             ))}
           </View>
@@ -97,7 +92,7 @@ const styles = StyleSheet.create({
   container: { flex: 1 },
   safeArea: { flex: 1 },
   content: {
-    paddingHorizontal: 20,
+    paddingHorizontal: 24,
     paddingTop: 16,
     paddingBottom: 40,
     gap: 14,
@@ -113,18 +108,20 @@ const styles = StyleSheet.create({
     flexShrink: 1,
   },
   brand: {
-    letterSpacing: 2,
-    opacity: 0.6,
+    letterSpacing: 2.5,
+    opacity: 0.5,
+    fontSize: 10,
   },
   title: {
     color: '#fff',
-    fontSize: 28,
-    fontWeight: '800',
+    fontSize: 22,
+    fontWeight: '500',
+    letterSpacing: 0.3,
   },
   subscribeButton: {
-    backgroundColor: '#FF4D4D',
-    paddingHorizontal: 18,
-    paddingVertical: 10,
+    backgroundColor: ACCENT,
+    paddingHorizontal: 14,
+    paddingVertical: 7,
     borderRadius: 999,
     flexShrink: 0,
     alignSelf: 'flex-start',
@@ -134,81 +131,73 @@ const styles = StyleSheet.create({
     transform: [{ scale: 0.97 }],
   },
   subscribeText: {
-    color: '#fff',
-    fontWeight: '700',
-    fontSize: 14,
+    color: '#000',
+    fontWeight: '500',
+    fontSize: 12,
+    letterSpacing: 0.3,
   },
   sectionTitle: {
-    color: '#fff',
-    fontSize: 18,
-    fontWeight: '700',
-    marginTop: 8,
+    color: ACCENT,
+    fontSize: 12,
+    fontWeight: '500',
+    letterSpacing: 1.5,
+    textTransform: 'uppercase',
+    marginTop: 12,
   },
   featured: {
-    backgroundColor: '#C0392B',
-    borderRadius: 20,
-    padding: 22,
-    gap: 12,
-    shadowColor: '#000',
-    shadowOpacity: 0.3,
-    shadowRadius: 10,
-    shadowOffset: { width: 0, height: 4 },
-    elevation: 6,
+    backgroundColor: 'rgba(216,188,143,0.08)',
+    borderColor: 'rgba(216,188,143,0.35)',
+    borderWidth: 1,
+    borderRadius: 16,
+    padding: 20,
+    gap: 14,
   },
   featuredPressed: {
     opacity: 0.85,
-    transform: [{ scale: 0.98 }],
-  },
-  featuredTop: {
-    flexDirection: 'row',
-    gap: 14,
-  },
-  featuredEmoji: {
-    fontSize: 34,
+    transform: [{ scale: 0.99 }],
   },
   featuredHead: {
-    flex: 1,
-    gap: 2,
+    gap: 3,
   },
   featuredKicker: {
-    color: 'rgba(255,255,255,0.75)',
-    fontSize: 11,
-    fontWeight: '700',
+    color: ACCENT,
+    fontSize: 10,
+    fontWeight: '500',
     letterSpacing: 1.5,
   },
   featuredTitle: {
     color: '#fff',
-    fontSize: 24,
-    fontWeight: '800',
+    fontSize: 20,
+    fontWeight: '500',
   },
   featuredTagline: {
-    color: 'rgba(255,255,255,0.9)',
-    fontSize: 14,
-    lineHeight: 20,
+    color: 'rgba(255,255,255,0.65)',
+    fontSize: 13,
+    lineHeight: 19,
   },
   progressRow: {
-    gap: 8,
+    gap: 6,
   },
   progressLabel: {
-    color: '#fff',
-    fontSize: 13,
-    fontWeight: '600',
+    color: 'rgba(255,255,255,0.75)',
+    fontSize: 11,
+    fontWeight: '400',
   },
   progressTrack: {
-    height: 8,
+    height: 4,
     borderRadius: 999,
-    backgroundColor: 'rgba(255,255,255,0.25)',
+    backgroundColor: 'rgba(216,188,143,0.2)',
     overflow: 'hidden',
   },
   progressFill: {
-    height: 8,
+    height: 4,
     borderRadius: 999,
-    backgroundColor: '#FFD166',
+    backgroundColor: ACCENT,
   },
   featuredCta: {
-    color: '#FFD166',
-    fontSize: 14,
-    fontWeight: '700',
+    color: ACCENT,
+    fontSize: 13,
+    fontWeight: '500',
   },
   grid: {
     flexDirection: 'row',
@@ -218,47 +207,39 @@ const styles = StyleSheet.create({
   storyCard: {
     width: '48%',
     flexGrow: 1,
-    backgroundColor: 'rgba(255,255,255,0.06)',
-    borderRadius: 16,
-    padding: 16,
-    gap: 6,
-  },
-  storyEmoji: {
-    fontSize: 28,
+    backgroundColor: 'rgba(255,255,255,0.04)',
+    borderColor: 'rgba(255,255,255,0.08)',
+    borderWidth: 1,
+    borderRadius: 14,
+    padding: 14,
+    gap: 5,
   },
   storyGenre: {
-    color: 'rgba(255,255,255,0.45)',
-    fontSize: 11,
-    fontWeight: '700',
+    color: ACCENT,
+    fontSize: 9,
+    fontWeight: '500',
     letterSpacing: 1,
     textTransform: 'uppercase',
   },
   storyTitle: {
     color: '#fff',
-    fontSize: 16,
-    fontWeight: '800',
+    fontSize: 14,
+    fontWeight: '500',
   },
   storyTagline: {
-    color: 'rgba(255,255,255,0.55)',
-    fontSize: 12,
-    lineHeight: 17,
-  },
-  soonBadge: {
-    alignSelf: 'flex-start',
-    backgroundColor: 'rgba(255,255,255,0.12)',
-    borderRadius: 999,
-    paddingHorizontal: 10,
-    paddingVertical: 4,
-    marginTop: 4,
+    color: 'rgba(255,255,255,0.5)',
+    fontSize: 11,
+    lineHeight: 16,
   },
   soonText: {
-    color: 'rgba(255,255,255,0.7)',
-    fontSize: 11,
-    fontWeight: '700',
+    color: 'rgba(216,188,143,0.7)',
+    fontSize: 10,
+    fontWeight: '400',
+    marginTop: 2,
   },
   footer: {
-    color: 'rgba(255,255,255,0.4)',
-    fontSize: 12,
+    color: 'rgba(255,255,255,0.35)',
+    fontSize: 11,
     textAlign: 'center',
     marginTop: 10,
   },
