@@ -20,12 +20,12 @@ const FEATURED = {
 const CATALOG = [
   { id: '1', emoji: '🧀', title: 'Le Fromage de la Honte', tagline: 'Trafic de Pont-Lévêque à Caen. Deux losers, une 2CV, zéro plan.', genre: 'Polar absurde' },
   { id: '2', emoji: '🌊', title: 'La Marée Noire', tagline: 'Un pêcheur de Dieppe remonte dans ses filets ce que la mer devait garder.', genre: 'Thriller' },
-  { id: '3', emoji: '🎭', title: 'L Applaudissement', tagline: 'Une comédienne reçoit des ovations pour une pièce qu’elle n’a jamais jouée.', genre: 'Mystère' },
-  { id: '4', emoji: '🏠', title: 'L Appart 3B', tagline: 'Le locataire d’en dessous entend des voix. Sauf que l’appart est vide.', genre: 'Huis clos' },
+  { id: '3', emoji: '🎭', title: 'L’Applaudissement', tagline: 'Une comédienne reçoit des ovations pour une pièce qu’elle n’a jamais jouée.', genre: 'Mystère' },
+  { id: '4', emoji: '🏠', title: 'L’Appart 3B', tagline: 'Le locataire d’en dessous entend des voix. Sauf que l’appart est vide.', genre: 'Huis clos' },
   { id: '5', emoji: '🚂', title: 'Le Dernier Terminus', tagline: 'Chaque nuit, un train s’arrête en gare. Il n’est pas au tableau des horaires.', genre: 'Fantastique' },
-  { id: '6', emoji: '💍', title: 'Le Témoin Muet', tagline: 'Au mariage de sa soeur, il reconnaît l’homme que tout le monde croyait mort.', genre: 'Polar' },
+  { id: '6', emoji: '💍', title: 'Le Témoin Muet', tagline: 'Au mariage de sa sœur, il reconnaît l’homme que tout le monde croyait mort.', genre: 'Polar' },
   { id: '7', emoji: '📱', title: 'Compte à Rebours', tagline: 'Son téléphone annonce chaque matin l’heure exacte de sa mort. J-30.', genre: 'Thriller' },
-  { id: '8', emoji: '🐢', title: 'La Vitesse de l Escargot', tagline: 'Le braquage le plus lent de l’histoire de France. 30 jours de fuite.', genre: 'Comédie noire' },
+  { id: '8', emoji: '🐢', title: 'La Vitesse de l’Escargot', tagline: 'Le braquage le plus lent de l’histoire de France. 30 jours de fuite.', genre: 'Comédie noire' },
   { id: '9', emoji: '🕯️', title: 'La Veillée', tagline: 'Onze personnes, une chambre funéraire, et un cercueil qu’on n’ouvre pas.', genre: 'Huis clos' },
 ];
 
