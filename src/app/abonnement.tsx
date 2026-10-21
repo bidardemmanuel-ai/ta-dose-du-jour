@@ -5,6 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemedView } from '@/components/themed-view';
 
 const ACCENT = '#e5ceac';
+const BUTTON = '#d8bc8f';
 
 const FEATURES = [
   'Un épisode chaque jour, directement dans l’app',
@@ -48,7 +49,7 @@ export default function AbonnementScreen() {
           <View style={styles.features}>
             {FEATURES.map((f, i) => (
               <View key={i} style={styles.featureRow}>
-                <Text style={styles.featureDash}>—</Text>
+                <Text style={styles.featureCheck}>✓</Text>
                 <Text style={styles.featureText}>{f}</Text>
               </View>
             ))}
@@ -97,9 +98,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   offer: {
-    backgroundColor: 'rgba(229,206,172,0.08)',
-    borderColor: 'rgba(229,206,172,0.35)',
-    borderWidth: 1,
+    backgroundColor: BUTTON,
     borderRadius: 16,
     padding: 20,
     gap: 10,
@@ -109,12 +108,12 @@ const styles = StyleSheet.create({
     gap: 2,
   },
   offerName: {
-    color: '#fff',
+    color: '#000',
     fontSize: 15,
     fontWeight: '500',
   },
   offerDesc: {
-    color: 'rgba(255,255,255,0.5)',
+    color: 'rgba(0,0,0,0.75)',
     fontSize: 12,
     fontWeight: '300',
   },
@@ -126,10 +125,10 @@ const styles = StyleSheet.create({
   offerPrice: {
     color: '#fff',
     fontSize: 32,
-    fontWeight: '500',
+    fontWeight: '700',
   },
   offerPer: {
-    color: ACCENT,
+    color: 'rgba(0,0,0,0.75)',
     fontSize: 13,
     fontWeight: '300',
     marginBottom: 7,
@@ -142,7 +141,7 @@ const styles = StyleSheet.create({
     gap: 10,
     alignItems: 'flex-start',
   },
-  featureDash: {
+  featureCheck: {
     color: ACCENT,
     fontSize: 13,
     fontWeight: '300',
@@ -155,7 +154,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   cta: {
-    backgroundColor: ACCENT,
+    backgroundColor: BUTTON,
     borderRadius: 999,
     paddingVertical: 13,
     alignItems: 'center',
