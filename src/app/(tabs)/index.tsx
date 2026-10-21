@@ -5,7 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 
-const ACCENT = '#d8bc8f';
+const ACCENT = '#e5ceac';
 
 // Histoire en cours : en vedette, lisible tout de suite.
 const FEATURED = {
@@ -49,6 +49,8 @@ export default function HomeScreen() {
             </Pressable>
           </View>
 
+          <View style={styles.separator} />
+
           <Text style={styles.sectionTitle}>Histoire du mois</Text>
 
           <Link href="/episode/1" asChild>
@@ -67,6 +69,8 @@ export default function HomeScreen() {
               <Text style={styles.featuredCta}>Continuer la lecture →</Text>
             </Pressable>
           </Link>
+
+          <View style={styles.separator} />
 
           <Text style={styles.sectionTitle}>Bientôt disponibles</Text>
 
@@ -118,6 +122,10 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     letterSpacing: 0.3,
   },
+  separator: {
+    height: StyleSheet.hairlineWidth,
+    backgroundColor: 'rgba(255,255,255,0.14)',
+  },
   subscribeButton: {
     backgroundColor: ACCENT,
     paddingHorizontal: 14,
@@ -132,17 +140,17 @@ const styles = StyleSheet.create({
   },
   subscribeText: {
     color: '#000',
-    fontWeight: '500',
+    fontWeight: '300',
     fontSize: 12,
     letterSpacing: 0.3,
   },
   sectionTitle: {
     color: ACCENT,
     fontSize: 12,
-    fontWeight: '500',
+    fontWeight: '300',
     letterSpacing: 1.5,
     textTransform: 'uppercase',
-    marginTop: 12,
+    marginTop: 2,
   },
   featured: {
     backgroundColor: 'rgba(216,188,143,0.08)',
@@ -162,7 +170,7 @@ const styles = StyleSheet.create({
   featuredKicker: {
     color: ACCENT,
     fontSize: 10,
-    fontWeight: '500',
+    fontWeight: '300',
     letterSpacing: 1.5,
   },
   featuredTitle: {
@@ -173,6 +181,7 @@ const styles = StyleSheet.create({
   featuredTagline: {
     color: 'rgba(255,255,255,0.65)',
     fontSize: 13,
+    fontWeight: '300',
     lineHeight: 19,
   },
   progressRow: {
@@ -181,7 +190,7 @@ const styles = StyleSheet.create({
   progressLabel: {
     color: 'rgba(255,255,255,0.75)',
     fontSize: 11,
-    fontWeight: '400',
+    fontWeight: '300',
   },
   progressTrack: {
     height: 4,
@@ -197,7 +206,7 @@ const styles = StyleSheet.create({
   featuredCta: {
     color: ACCENT,
     fontSize: 13,
-    fontWeight: '500',
+    fontWeight: '300',
   },
   grid: {
     flexDirection: 'row',
@@ -217,7 +226,7 @@ const styles = StyleSheet.create({
   storyGenre: {
     color: ACCENT,
     fontSize: 9,
-    fontWeight: '500',
+    fontWeight: '300',
     letterSpacing: 1,
     textTransform: 'uppercase',
   },
@@ -229,17 +238,20 @@ const styles = StyleSheet.create({
   storyTagline: {
     color: 'rgba(255,255,255,0.5)',
     fontSize: 11,
+    fontWeight: '300',
     lineHeight: 16,
   },
   soonText: {
-    color: 'rgba(216,188,143,0.7)',
+    color: ACCENT,
     fontSize: 10,
-    fontWeight: '400',
+    fontWeight: '300',
+    opacity: 0.7,
     marginTop: 2,
   },
   footer: {
     color: 'rgba(255,255,255,0.35)',
     fontSize: 11,
+    fontWeight: '300',
     textAlign: 'center',
     marginTop: 10,
   },
