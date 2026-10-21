@@ -6,6 +6,7 @@ import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 
 const ACCENT = '#e5ceac';
+const BUTTON = '#d8bc8f';
 
 // Histoire en cours : en vedette, lisible tout de suite.
 const FEATURED = {
@@ -74,13 +75,18 @@ export default function HomeScreen() {
 
           <Text style={styles.sectionTitle}>Bientôt disponibles</Text>
 
-          <View style={styles.grid}>
-            {CATALOG.map((story) => (
-              <View key={story.id} style={styles.storyCard}>
-                <Text style={styles.storyGenre}>{story.genre}</Text>
-                <Text style={styles.storyTitle}>{story.title}</Text>
-                <Text style={styles.storyTagline}>{story.tagline}</Text>
-                <Text style={styles.soonText}>Bientôt</Text>
+          <View style={styles.catalog}>
+            {CATALOG.map((story, i) => (
+              <View key={story.id}>
+                <View style={styles.storyRow}>
+                  <View style={styles.storyTexts}>
+                    <Text style={styles.storyGenre}>{story.genre}</Text>
+                    <Text style={styles.storyTitle}>{story.title}</Text>
+                    <Text style={styles.storyTagline}>{story.tagline}</Text>
+                  </View>
+                  <Text style={styles.soonText}>Bientôt</Text>
+                </View>
+                {i < CATALOG.length - 1 ? <View style={styles.rowSeparator} /> : null}
               </View>
             ))}
           </View>
@@ -127,7 +133,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#e5ceac',
   },
   subscribeButton: {
-    backgroundColor: ACCENT,
+    backgroundColor: BUTTON,
     paddingHorizontal: 14,
     paddingVertical: 7,
     borderRadius: 999,
@@ -208,20 +214,19 @@ const styles = StyleSheet.create({
     fontSize: 13,
     fontWeight: '300',
   },
-  grid: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: 12,
+  catalog: {
+    gap: 0,
   },
-  storyCard: {
-    width: '48%',
-    flexGrow: 1,
-    backgroundColor: 'rgba(255,255,255,0.04)',
-    borderColor: 'rgba(255,255,255,0.08)',
-    borderWidth: 1,
-    borderRadius: 14,
-    padding: 14,
-    gap: 5,
+  storyRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: 12,
+    paddingVertical: 14,
+  },
+  storyTexts: {
+    flexShrink: 1,
+    gap: 3,
   },
   storyGenre: {
     color: ACCENT,
@@ -246,7 +251,11 @@ const styles = StyleSheet.create({
     fontSize: 10,
     fontWeight: '300',
     opacity: 0.7,
-    marginTop: 2,
+    flexShrink: 0,
+  },
+  rowSeparator: {
+    height: 1,
+    backgroundColor: 'rgba(229,206,172,0.5)',
   },
   footer: {
     color: 'rgba(255,255,255,0.35)',
