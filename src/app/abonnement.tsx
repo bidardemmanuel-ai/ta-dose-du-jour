@@ -4,6 +4,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { ThemedView } from '@/components/themed-view';
 
+const ACCENT = '#d8bc8f';
+
 const FEATURES = [
   'Un épisode chaque jour, directement dans l’app',
   'Des histoires complètes en 30 jours',
@@ -20,7 +22,7 @@ export default function AbonnementScreen() {
           headerTitle: 'S’abonner',
           headerStyle: { backgroundColor: '#000' },
           headerTintColor: '#fff',
-          headerTitleStyle: { fontWeight: '700' },
+          headerTitleStyle: { fontWeight: '500' },
           headerBackTitle: 'Retour',
         }}
       />
@@ -34,10 +36,8 @@ export default function AbonnementScreen() {
 
           <View style={styles.offer}>
             <View style={styles.offerTop}>
-              <View>
-                <Text style={styles.offerName}>Abonnement mensuel</Text>
-                <Text style={styles.offerDesc}>La Chapelle Nord — 30 épisodes</Text>
-              </View>
+              <Text style={styles.offerName}>Abonnement mensuel</Text>
+              <Text style={styles.offerDesc}>La Chapelle Nord — 30 épisodes</Text>
             </View>
             <View style={styles.offerPriceRow}>
               <Text style={styles.offerPrice}>4,99 €</Text>
@@ -48,7 +48,7 @@ export default function AbonnementScreen() {
           <View style={styles.features}>
             {FEATURES.map((f, i) => (
               <View key={i} style={styles.featureRow}>
-                <Text style={styles.featureCheck}>✓</Text>
+                <Text style={styles.featureDash}>—</Text>
                 <Text style={styles.featureText}>{f}</Text>
               </View>
             ))}
@@ -73,51 +73,48 @@ const styles = StyleSheet.create({
   content: {
     padding: 24,
     paddingBottom: 48,
-    gap: 20,
+    gap: 18,
   },
   kicker: {
-    color: 'rgba(255,255,255,0.5)',
-    fontSize: 12,
-    fontWeight: '700',
+    color: 'rgba(255,255,255,0.4)',
+    fontSize: 10,
+    fontWeight: '500',
     letterSpacing: 3,
     textAlign: 'center',
   },
   title: {
     color: '#fff',
-    fontSize: 26,
-    fontWeight: '800',
+    fontSize: 22,
+    fontWeight: '500',
     textAlign: 'center',
-    lineHeight: 32,
+    lineHeight: 29,
   },
   subtitle: {
-    color: 'rgba(255,255,255,0.6)',
-    fontSize: 15,
-    lineHeight: 22,
+    color: 'rgba(255,255,255,0.55)',
+    fontSize: 13,
+    lineHeight: 20,
     textAlign: 'center',
   },
   offer: {
-    backgroundColor: '#C0392B',
-    borderRadius: 20,
-    padding: 22,
-    gap: 12,
-    marginTop: 6,
-    shadowColor: '#000',
-    shadowOpacity: 0.3,
-    shadowRadius: 10,
-    shadowOffset: { width: 0, height: 4 },
-    elevation: 6,
+    backgroundColor: 'rgba(216,188,143,0.08)',
+    borderColor: 'rgba(216,188,143,0.35)',
+    borderWidth: 1,
+    borderRadius: 16,
+    padding: 20,
+    gap: 10,
+    marginTop: 4,
   },
   offerTop: {
     gap: 2,
   },
   offerName: {
     color: '#fff',
-    fontSize: 16,
-    fontWeight: '700',
+    fontSize: 15,
+    fontWeight: '500',
   },
   offerDesc: {
-    color: 'rgba(255,255,255,0.75)',
-    fontSize: 13,
+    color: 'rgba(255,255,255,0.5)',
+    fontSize: 12,
   },
   offerPriceRow: {
     flexDirection: 'row',
@@ -126,54 +123,54 @@ const styles = StyleSheet.create({
   },
   offerPrice: {
     color: '#fff',
-    fontSize: 40,
-    fontWeight: '800',
+    fontSize: 32,
+    fontWeight: '500',
   },
   offerPer: {
-    color: 'rgba(255,255,255,0.75)',
-    fontSize: 15,
-    marginBottom: 8,
+    color: ACCENT,
+    fontSize: 13,
+    marginBottom: 7,
   },
   features: {
-    gap: 14,
+    gap: 12,
   },
   featureRow: {
     flexDirection: 'row',
-    gap: 12,
+    gap: 10,
     alignItems: 'flex-start',
   },
-  featureCheck: {
-    color: '#2ECC71',
-    fontSize: 16,
-    fontWeight: '800',
+  featureDash: {
+    color: ACCENT,
+    fontSize: 13,
   },
   featureText: {
-    color: '#EDEDF0',
-    fontSize: 15,
-    lineHeight: 22,
+    color: 'rgba(255,255,255,0.85)',
+    fontSize: 13,
+    lineHeight: 20,
     flex: 1,
   },
   cta: {
-    backgroundColor: '#FF4D4D',
+    backgroundColor: ACCENT,
     borderRadius: 999,
-    paddingVertical: 16,
+    paddingVertical: 13,
     alignItems: 'center',
-    marginTop: 10,
+    marginTop: 8,
   },
   ctaPressed: {
     opacity: 0.8,
     transform: [{ scale: 0.98 }],
   },
   ctaText: {
-    color: '#fff',
-    fontSize: 17,
-    fontWeight: '700',
+    color: '#000',
+    fontSize: 14,
+    fontWeight: '500',
+    letterSpacing: 0.3,
   },
   legal: {
-    color: 'rgba(255,255,255,0.4)',
-    fontSize: 12,
-    lineHeight: 18,
+    color: 'rgba(255,255,255,0.35)',
+    fontSize: 11,
+    lineHeight: 17,
     textAlign: 'center',
-    marginTop: 4,
+    marginTop: 2,
   },
 });
