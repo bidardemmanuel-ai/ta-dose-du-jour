@@ -4,7 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { ThemedView } from '@/components/themed-view';
 
-const ACCENT = '#d8bc8f';
+const ACCENT = '#e5ceac';
 
 const FEATURES = [
   'Un épisode chaque jour, directement dans l’app',
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
   kicker: {
     color: 'rgba(255,255,255,0.4)',
     fontSize: 10,
-    fontWeight: '500',
+    fontWeight: '300',
     letterSpacing: 3,
     textAlign: 'center',
   },
@@ -92,6 +92,7 @@ const styles = StyleSheet.create({
   subtitle: {
     color: 'rgba(255,255,255,0.55)',
     fontSize: 13,
+    fontWeight: '300',
     lineHeight: 20,
     textAlign: 'center',
   },
@@ -115,6 +116,7 @@ const styles = StyleSheet.create({
   offerDesc: {
     color: 'rgba(255,255,255,0.5)',
     fontSize: 12,
+    fontWeight: '300',
   },
   offerPriceRow: {
     flexDirection: 'row',
@@ -129,6 +131,7 @@ const styles = StyleSheet.create({
   offerPer: {
     color: ACCENT,
     fontSize: 13,
+    fontWeight: '300',
     marginBottom: 7,
   },
   features: {
@@ -142,10 +145,12 @@ const styles = StyleSheet.create({
   featureDash: {
     color: ACCENT,
     fontSize: 13,
+    fontWeight: '300',
   },
   featureText: {
     color: 'rgba(255,255,255,0.85)',
     fontSize: 13,
+    fontWeight: '300',
     lineHeight: 20,
     flex: 1,
   },
@@ -163,12 +168,13 @@ const styles = StyleSheet.create({
   ctaText: {
     color: '#000',
     fontSize: 14,
-    fontWeight: '500',
+    fontWeight: '300',
     letterSpacing: 0.3,
   },
   legal: {
     color: 'rgba(255,255,255,0.35)',
     fontSize: 11,
+    fontWeight: '300',
     lineHeight: 17,
     textAlign: 'center',
     marginTop: 2,
