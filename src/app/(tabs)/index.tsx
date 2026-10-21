@@ -123,8 +123,8 @@ const styles = StyleSheet.create({
     letterSpacing: 0.3,
   },
   separator: {
-    height: StyleSheet.hairlineWidth,
-    backgroundColor: 'rgba(255,255,255,0.14)',
+    height: 1,
+    backgroundColor: '#e5ceac',
   },
   subscribeButton: {
     backgroundColor: ACCENT,
@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
   },
   subscribeText: {
     color: '#000',
-    fontWeight: '300',
+    fontWeight: '700',
     fontSize: 12,
     letterSpacing: 0.3,
   },
@@ -153,8 +153,8 @@ const styles = StyleSheet.create({
     marginTop: 2,
   },
   featured: {
-    backgroundColor: 'rgba(216,188,143,0.08)',
-    borderColor: 'rgba(216,188,143,0.35)',
+    backgroundColor: 'rgba(229,206,172,0.08)',
+    borderColor: 'rgba(229,206,172,0.35)',
     borderWidth: 1,
     borderRadius: 16,
     padding: 20,
@@ -195,7 +195,7 @@ const styles = StyleSheet.create({
   progressTrack: {
     height: 4,
     borderRadius: 999,
-    backgroundColor: 'rgba(216,188,143,0.2)',
+    backgroundColor: 'rgba(229,206,172,0.2)',
     overflow: 'hidden',
   },
   progressFill: {
