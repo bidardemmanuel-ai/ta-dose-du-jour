@@ -1,11 +1,10 @@
-import { Link, Stack, router } from 'expo-router';
+import { Link, Stack } from 'expo-router';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { ThemedView } from '@/components/themed-view';
 
 const ACCENT = '#e5ceac';
-const BUTTON = '#d8bc8f';
 
 const TOTAL = 30;
 const READ = 2; // J1 et J2 déjà lus
@@ -73,14 +72,6 @@ export default function ChapelleNordScreen() {
                   ) : (
                     row
                   )}
-                  {day === TODAY ? (
-                    <Pressable
-                      style={({ pressed }) => [styles.subscribeCta, pressed && styles.subscribePressed]}
-                      onPress={() => router.push('/abonnement')}
-                    >
-                      <Text style={styles.subscribeText}>S’abonner pour la suite</Text>
-                    </Pressable>
-                  ) : null}
                   {day < TOTAL ? <View style={styles.rowSeparator} /> : null}
                 </View>
               );
@@ -191,24 +182,6 @@ const styles = StyleSheet.create({
     fontSize: 10,
     fontWeight: '300',
     flexShrink: 0,
-  },
-  subscribeCta: {
-    backgroundColor: BUTTON,
-    borderRadius: 999,
-    paddingVertical: 13,
-    alignItems: 'center',
-    marginTop: 14,
-    marginBottom: 2,
-  },
-  subscribePressed: {
-    opacity: 0.8,
-    transform: [{ scale: 0.98 }],
-  },
-  subscribeText: {
-    color: '#000',
-    fontSize: 13,
-    fontWeight: '700',
-    letterSpacing: 0.3,
   },
   rowSeparator: {
     height: 1,
