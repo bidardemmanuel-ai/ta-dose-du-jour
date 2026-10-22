@@ -218,9 +218,9 @@ const styles = StyleSheet.create({
     letterSpacing: 0.3,
   },
   ctaPrice: {
-    color: 'rgba(0,0,0,0.75)',
-    fontSize: 10,
-    fontWeight: '300',
+    color: '#000',
+    fontSize: 12,
+    fontWeight: '700',
     letterSpacing: 0.3,
   },
 });
