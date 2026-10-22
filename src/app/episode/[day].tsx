@@ -1,8 +1,10 @@
-import { Stack, useLocalSearchParams } from 'expo-router';
-import { ScrollView, StyleSheet, Text } from 'react-native';
+import { Stack, router, useLocalSearchParams } from 'expo-router';
+import { Pressable, ScrollView, StyleSheet, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { ThemedView } from '@/components/themed-view';
+
+const BUTTON = '#d8bc8f';
 
 type Episode = { title: string; paragraphs: string[] };
 
@@ -69,6 +71,13 @@ export default function EpisodeScreen() {
             <Text key={i} style={styles.paragraph}>{p}</Text>
           ))}
           <Text style={styles.cliffhanger}>Fin de l’épisode. La suite demain.</Text>
+
+          <Pressable
+            style={({ pressed }) => [styles.cta, pressed && styles.ctaPressed]}
+            onPress={() => router.push('/abonnement')}
+          >
+            <Text style={styles.ctaText}>S’abonner pour lire la suite · 4,99 €/mois</Text>
+          </Pressable>
         </ScrollView>
       </SafeAreaView>
     </ThemedView>
@@ -94,5 +103,22 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 24,
     fontStyle: 'italic',
+  },
+  cta: {
+    backgroundColor: BUTTON,
+    borderRadius: 999,
+    paddingVertical: 13,
+    alignItems: 'center',
+    marginTop: 16,
+  },
+  ctaPressed: {
+    opacity: 0.8,
+    transform: [{ scale: 0.98 }],
+  },
+  ctaText: {
+    color: '#000',
+    fontSize: 13,
+    fontWeight: '700',
+    letterSpacing: 0.3,
   },
 });
