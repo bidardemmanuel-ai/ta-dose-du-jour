@@ -103,7 +103,10 @@ export default function EpisodeScreen() {
               style={({ pressed }) => [styles.cta, pressed && styles.ctaPressed]}
               onPress={() => router.push('/abonnement')}
             >
-              <Text style={styles.ctaText}>S’abonner pour lire la suite · 4,99 €/mois</Text>
+              <View style={styles.ctaTexts}>
+              <Text style={styles.ctaText}>S’abonner pour lire la suite</Text>
+              <Text style={styles.ctaPrice}>4,99 €/mois</Text>
+            </View>
             </Pressable>
           )}
         </ScrollView>
@@ -204,10 +207,20 @@ const styles = StyleSheet.create({
     opacity: 0.8,
     transform: [{ scale: 0.98 }],
   },
+  ctaTexts: {
+    alignItems: 'center',
+    gap: 2,
+  },
   ctaText: {
     color: '#000',
     fontSize: 12,
     fontWeight: '700',
+    letterSpacing: 0.3,
+  },
+  ctaPrice: {
+    color: 'rgba(0,0,0,0.75)',
+    fontSize: 10,
+    fontWeight: '300',
     letterSpacing: 0.3,
   },
 });
