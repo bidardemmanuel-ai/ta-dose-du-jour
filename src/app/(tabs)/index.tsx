@@ -11,7 +11,6 @@ const BUTTON = '#d8bc8f';
 // Histoire en cours : en vedette, lisible tout de suite.
 const FEATURED = {
   id: 'chapelle-nord',
-  kicker: 'OCTOBRE 2026 · EN COURS',
   title: 'La Chapelle Nord',
   tagline: '30 jours. 30 épisodes. Une banlieue qui brûle.',
   episodes: 30,
@@ -52,12 +51,10 @@ export default function HomeScreen() {
 
           <View style={styles.separator} />
 
-          <Text style={styles.sectionTitle}>Histoire du mois</Text>
-
-          <Link href="/episode/1" asChild>
+          <Link href="/chapelle-nord" asChild>
             <Pressable style={({ pressed }) => [styles.featured, pressed && styles.featuredPressed]}>
               <View style={styles.featuredHead}>
-                <Text style={styles.featuredKicker}>{FEATURED.kicker}</Text>
+                <Text style={styles.featuredKicker}>EN COURS</Text>
                 <Text style={styles.featuredTitle}>{FEATURED.title}</Text>
                 <Text style={styles.featuredTagline}>{FEATURED.tagline}</Text>
               </View>
@@ -67,7 +64,7 @@ export default function HomeScreen() {
                   <View style={[styles.progressFill, { width: ((FEATURED.unlocked / FEATURED.episodes) * 100) + '%' }]} />
                 </View>
               </View>
-              <Text style={styles.featuredCta}>Continuer la lecture →</Text>
+              <Text style={styles.featuredCta}>Voir les épisodes →</Text>
             </Pressable>
           </Link>
 
@@ -175,8 +172,8 @@ const styles = StyleSheet.create({
   },
   featuredKicker: {
     color: ACCENT,
-    fontSize: 10,
-    fontWeight: '300',
+    fontSize: 12,
+    fontWeight: '500',
     letterSpacing: 1.5,
   },
   featuredTitle: {
