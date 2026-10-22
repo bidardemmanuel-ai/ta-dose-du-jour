@@ -1,10 +1,14 @@
-import { Stack, router, useLocalSearchParams } from 'expo-router';
-import { Pressable, ScrollView, StyleSheet, Text } from 'react-native';
+import { Link, Stack, router, useLocalSearchParams } from 'expo-router';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { ThemedView } from '@/components/themed-view';
 
+const ACCENT = '#e5ceac';
 const BUTTON = '#d8bc8f';
+
+const STORY_TITLE = 'La Chapelle Nord';
+const TODAY = 3; // dernier épisode débloqué
 
 type Episode = { title: string; paragraphs: string[] };
 
@@ -51,7 +55,11 @@ const EPISODES: Record<string, Episode> = {
 
 export default function EpisodeScreen() {
   const { day } = useLocalSearchParams<{ day: string }>();
+  const dayNum = Number(day ?? '1');
   const episode = EPISODES[day ?? '1'] ?? { title: 'Épisode à venir', paragraphs: [] };
+  const hasNext = dayNum < TODAY;
+  const nextDay = dayNum + 1;
+  const nextTitle = EPISODES[String(nextDay)]?.title ?? 'Épisode à venir';
 
   return (
     <ThemedView style={styles.container}>
@@ -67,17 +75,37 @@ export default function EpisodeScreen() {
       />
       <SafeAreaView style={styles.safeArea} edges={['left', 'right']}>
         <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
+          <View style={styles.episodeHead}>
+            <Text style={styles.kicker}>{STORY_TITLE.toUpperCase()} · J{day} / 30</Text>
+            <Text style={styles.episodeTitle}>{episode.title}</Text>
+          </View>
+
+          <View style={styles.headSeparator} />
+
           {episode.paragraphs.map((p, i) => (
             <Text key={i} style={styles.paragraph}>{p}</Text>
           ))}
+
           <Text style={styles.cliffhanger}>Fin de l’épisode. La suite demain.</Text>
 
-          <Pressable
-            style={({ pressed }) => [styles.cta, pressed && styles.ctaPressed]}
-            onPress={() => router.push('/abonnement')}
-          >
-            <Text style={styles.ctaText}>S’abonner pour lire la suite · 4,99 €/mois</Text>
-          </Pressable>
+          {hasNext ? (
+            <Link href={'/episode/' + nextDay} asChild>
+              <Pressable style={({ pressed }) => [styles.nextRow, pressed && styles.nextPressed]}>
+                <View style={styles.nextTexts}>
+                  <Text style={styles.nextLabel}>Épisode suivant</Text>
+                  <Text style={styles.nextTitle}>J{nextDay} — {nextTitle}</Text>
+                </View>
+                <Text style={styles.nextChevron}>→</Text>
+              </Pressable>
+            </Link>
+          ) : (
+            <Pressable
+              style={({ pressed }) => [styles.cta, pressed && styles.ctaPressed]}
+              onPress={() => router.push('/abonnement')}
+            >
+              <Text style={styles.ctaText}>S’abonner pour lire la suite · 4,99 €/mois</Text>
+            </Pressable>
+          )}
         </ScrollView>
       </SafeAreaView>
     </ThemedView>
@@ -92,17 +120,78 @@ const styles = StyleSheet.create({
     paddingBottom: 48,
     gap: 16,
   },
+  episodeHead: {
+    gap: 6,
+    marginBottom: 2,
+  },
+  kicker: {
+    color: ACCENT,
+    fontSize: 10,
+    fontWeight: '300',
+    letterSpacing: 2,
+  },
+  episodeTitle: {
+    color: '#fff',
+    fontSize: 20,
+    fontWeight: '500',
+    lineHeight: 26,
+  },
+  headSeparator: {
+    height: 1,
+    backgroundColor: ACCENT,
+    marginTop: 12,
+    marginBottom: 6,
+  },
   paragraph: {
     color: '#EDEDF0',
     fontSize: 16,
+    fontWeight: '300',
     lineHeight: 26,
   },
   cliffhanger: {
     color: 'rgba(255,255,255,0.4)',
     fontSize: 12,
+    fontWeight: '300',
     textAlign: 'center',
     marginTop: 24,
     fontStyle: 'italic',
+  },
+  nextRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: 12,
+    backgroundColor: 'rgba(229,206,172,0.08)',
+    borderColor: 'rgba(229,206,172,0.35)',
+    borderWidth: 1,
+    borderRadius: 14,
+    padding: 16,
+    marginTop: 8,
+  },
+  nextPressed: {
+    opacity: 0.8,
+    transform: [{ scale: 0.99 }],
+  },
+  nextTexts: {
+    flexShrink: 1,
+    gap: 2,
+  },
+  nextLabel: {
+    color: ACCENT,
+    fontSize: 9,
+    fontWeight: '300',
+    letterSpacing: 1.5,
+    textTransform: 'uppercase',
+  },
+  nextTitle: {
+    color: '#fff',
+    fontSize: 14,
+    fontWeight: '500',
+  },
+  nextChevron: {
+    color: ACCENT,
+    fontSize: 14,
+    flexShrink: 0,
   },
   cta: {
     backgroundColor: BUTTON,
