@@ -70,7 +70,7 @@ export default function HomeScreen() {
 
           <View style={styles.separator} />
 
-          <Text style={styles.sectionTitle}>Bientôt disponibles</Text>
+          <Text style={styles.sectionTitle}>Romans disponibles</Text>
 
           <View style={styles.catalog}>
             {CATALOG.map((story, i) => (
@@ -81,7 +81,7 @@ export default function HomeScreen() {
                     <Text style={styles.storyTitle}>{story.title}</Text>
                     <Text style={styles.storyTagline}>{story.tagline}</Text>
                   </View>
-                  <Text style={styles.soonText}>Bientôt</Text>
+                  {i >= CATALOG.length - 2 ? <Text style={styles.soonText}>Bientôt</Text> : null}
                 </View>
                 {i < CATALOG.length - 1 ? <View style={styles.rowSeparator} /> : null}
               </View>
