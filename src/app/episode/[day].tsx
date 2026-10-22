@@ -196,7 +196,7 @@ const styles = StyleSheet.create({
   cta: {
     backgroundColor: BUTTON,
     borderRadius: 999,
-    paddingVertical: 13,
+    paddingVertical: 11,
     alignItems: 'center',
     marginTop: 16,
   },
@@ -206,7 +206,7 @@ const styles = StyleSheet.create({
   },
   ctaText: {
     color: '#000',
-    fontSize: 13,
+    fontSize: 12,
     fontWeight: '700',
     letterSpacing: 0.3,
   },
