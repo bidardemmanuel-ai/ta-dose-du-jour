@@ -1,4 +1,4 @@
-import { Link, router } from 'expo-router';
+import { router } from 'expo-router';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -51,8 +51,10 @@ export default function HomeScreen() {
 
           <View style={styles.separator} />
 
-          <Link href="/chapelle-nord" asChild>
-            <Pressable style={({ pressed }) => [styles.featured, pressed && styles.featuredPressed]}>
+          <Pressable
+            style={({ pressed }) => [styles.featured, pressed && styles.featuredPressed]}
+            onPress={() => router.push('/chapelle-nord')}
+          >
               <View style={styles.featuredHead}>
                 <Text style={styles.featuredKicker}>EN COURS</Text>
                 <Text style={styles.featuredTitle}>{FEATURED.title}</Text>
@@ -65,8 +67,7 @@ export default function HomeScreen() {
                 </View>
               </View>
               <Text style={styles.featuredCta}>Voir les épisodes →</Text>
-            </Pressable>
-          </Link>
+          </Pressable>
 
           <View style={styles.separator} />
 
