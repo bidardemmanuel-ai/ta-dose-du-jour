@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
   day: {
     fontSize: 13,
     fontWeight: '500',
-    width: 36,
+    minWidth: 36,
     flexShrink: 0,
   },
   dayToday: {
