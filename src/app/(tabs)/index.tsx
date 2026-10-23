@@ -175,7 +175,7 @@ const styles = StyleSheet.create({
     letterSpacing: 1.5,
   },
   featuredTitle: {
-    color: '#fff',
+    color: '#ff0000',
     fontSize: 20,
     fontWeight: '700',
   },
