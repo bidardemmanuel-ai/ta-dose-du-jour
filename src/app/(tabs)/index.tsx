@@ -179,7 +179,7 @@ const styles = StyleSheet.create({
   featuredTagline: {
     color: 'rgba(0,0,0,0.75)',
     fontSize: 13,
-    fontWeight: '300',
+    fontWeight: '500',
     lineHeight: 19,
   },
   progressRow: {
