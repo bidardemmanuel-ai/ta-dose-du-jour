@@ -49,8 +49,6 @@ export default function HomeScreen() {
             </Pressable>
           </View>
 
-          <View style={styles.separator} />
-
           <Pressable
             style={({ pressed }) => [styles.featured, pressed && styles.featuredPressed]}
             onPress={() => router.push('/chapelle-nord')}
@@ -68,8 +66,6 @@ export default function HomeScreen() {
               </View>
               <Text style={styles.featuredCta}>Voir les épisodes →</Text>
           </Pressable>
-
-          <View style={styles.separator} />
 
           <Text style={styles.sectionTitle}>Romans disponibles</Text>
 
@@ -176,7 +172,7 @@ const styles = StyleSheet.create({
     letterSpacing: 1.5,
   },
   featuredTitle: {
-    color: '#ff0000',
+    color: '#fff',
     fontSize: 20,
     fontWeight: '700',
   },
