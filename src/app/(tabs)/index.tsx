@@ -1,5 +1,3 @@
-import { useRef } from 'react';
-
 import { router } from 'expo-router';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -33,26 +31,16 @@ const CATALOG = [
 ];
 
 export default function HomeScreen() {
-  const scrollRef = useRef<ScrollView>(null);
-  const catalogY = useRef(0);
-
   return (
     <ThemedView style={styles.container}>
       <SafeAreaView style={styles.safeArea} edges={['top', 'left', 'right']}>
-        <ScrollView ref={scrollRef} contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
+        <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
           <View style={styles.header}>
             <View style={styles.headerLeft}>
               <ThemedText type="small" style={styles.brand}>MINI ROMANS</ThemedText>
               <Text style={styles.title} numberOfLines={1} adjustsFontSizeToFit>Ta dose du jour</Text>
-              <Text style={styles.promise}>Le premier épisode de chaque roman gratuit.</Text>
+              <Text style={styles.promise}>Le premier épisode de chaque roman est gratos !</Text>
             </View>
-            <Pressable
-              style={({ pressed }) => [styles.subscribeButton, pressed && styles.subscribePressed]}
-              onPress={() => scrollRef.current?.scrollTo({ y: Math.max(0, catalogY.current - 12), animated: true })}
-              hitSlop={8}
-            >
-              <Text style={styles.subscribeText} numberOfLines={1} adjustsFontSizeToFit>Acheter</Text>
-            </Pressable>
           </View>
 
           <Pressable
@@ -73,10 +61,7 @@ export default function HomeScreen() {
               <Text style={styles.featuredCta}>Voir les épisodes →</Text>
           </Pressable>
 
-          <Text
-            style={styles.sectionTitle}
-            onLayout={(e) => { catalogY.current = e.nativeEvent.layout.y; }}
-          >Romans disponibles</Text>
+          <Text style={styles.sectionTitle}>Romans disponibles</Text>
 
           <View style={styles.catalog}>
             {CATALOG.map((story, i) => (
@@ -130,12 +115,13 @@ const styles = StyleSheet.create({
   },
   title: {
     color: '#fff',
-    fontSize: 26,
+    fontSize: 30,
     fontWeight: '500',
     letterSpacing: 0.3,
+    marginTop: 6,
   },
   promise: {
-    color: '#fff',
+    color: ACCENT,
     fontSize: 13,
     fontWeight: '400',
     marginTop: 3,
@@ -143,24 +129,6 @@ const styles = StyleSheet.create({
   separator: {
     height: 1,
     backgroundColor: '#e5ceac',
-  },
-  subscribeButton: {
-    backgroundColor: BUTTON,
-    paddingHorizontal: 14,
-    paddingVertical: 7,
-    borderRadius: 999,
-    flexShrink: 0,
-    alignSelf: 'flex-start',
-  },
-  subscribePressed: {
-    opacity: 0.8,
-    transform: [{ scale: 0.97 }],
-  },
-  subscribeText: {
-    color: '#000',
-    fontWeight: '700',
-    fontSize: 12,
-    letterSpacing: 0.3,
   },
   sectionTitle: {
     color: ACCENT,
