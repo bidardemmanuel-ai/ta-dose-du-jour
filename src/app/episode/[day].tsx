@@ -8,7 +8,7 @@ const ACCENT = '#e5ceac';
 const BUTTON = '#d8bc8f';
 
 const STORY_TITLE = 'La Chapelle Nord';
-const TODAY = 3; // dernier épisode débloqué
+const TODAY = 1; // épisode du jour
 
 type Episode = { title: string; paragraphs: string[] };
 
@@ -218,8 +218,8 @@ const styles = StyleSheet.create({
     letterSpacing: 0.3,
   },
   ctaPrice: {
-    color: '#fff',
-    fontSize: 18,
+    color: '#000',
+    fontSize: 16,
     fontWeight: '800',
     letterSpacing: 0.3,
     marginTop: 2,
