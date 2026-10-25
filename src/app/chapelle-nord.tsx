@@ -62,10 +62,6 @@ export default function ChapelleNordScreen() {
       <SafeAreaView style={styles.safeArea} edges={['left', 'right']}>
         <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
           <View style={styles.topRow}>
-            <View style={styles.topTexts}>
-              <Text style={styles.kicker}>EN COURS · 30 ÉPISODES</Text>
-              <Text style={styles.tagline}>Une banlieue qui brûle. Un épisode par jour.</Text>
-            </View>
             <Pressable
               style={({ pressed }) => [styles.buyButton, pressed && styles.buyPressed]}
               onPress={() => router.push('/abonnement?roman=chapelle-nord')}
@@ -73,6 +69,10 @@ export default function ChapelleNordScreen() {
             >
               <Text style={styles.buyText}>Acheter</Text>
             </Pressable>
+            <View style={styles.topTexts}>
+              <Text style={styles.kicker}>EN COURS · 30 ÉPISODES</Text>
+              <Text style={styles.tagline}>Une banlieue qui brûle. Un épisode par jour.</Text>
+            </View>
           </View>
 
           <View style={styles.list}>
