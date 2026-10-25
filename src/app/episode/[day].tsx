@@ -200,9 +200,10 @@ const styles = StyleSheet.create({
   },
   cta: {
     backgroundColor: BUTTON,
-    borderRadius: 999,
-    paddingVertical: 11,
+    borderRadius: 16,
+    padding: 20,
     alignItems: 'center',
+    gap: 10,
     marginTop: 16,
   },
   ctaPressed: {
@@ -214,9 +215,9 @@ const styles = StyleSheet.create({
     gap: 2,
   },
   ctaStory: {
-    color: '#000',
-    fontSize: 15,
-    fontWeight: '800',
+    color: '#fff',
+    fontSize: 20,
+    fontWeight: '700',
     letterSpacing: 0.3,
   },
   ctaText: {
