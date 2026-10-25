@@ -7,8 +7,8 @@ import { ThemedView } from '@/components/themed-view';
 const ACCENT = '#e5ceac';
 
 const TOTAL = 30;
-const READ = 2; // J1 et J2 déjà lus
-const TODAY = 3; // épisode du jour
+const READ = 0;
+const TODAY = 1; // épisode du jour
 
 const TITLES: Record<number, string> = {
   1: 'Le premier message',
