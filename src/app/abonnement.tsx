@@ -1,4 +1,4 @@
-import { Stack } from 'expo-router';
+import { Stack, useLocalSearchParams } from 'expo-router';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -14,6 +14,9 @@ const FEATURES = [
 ];
 
 export default function AbonnementScreen() {
+  const { roman } = useLocalSearchParams<{ roman?: string }>();
+  const storyTitle = roman === 'fromage-de-la-honte' ? 'Le Fromage de la Honte' : 'La Chapelle Nord';
+
   return (
     <ThemedView style={styles.container}>
       <Stack.Screen
@@ -36,7 +39,7 @@ export default function AbonnementScreen() {
 
           <View style={styles.offer}>
             <View style={styles.offerTop}>
-              <Text style={styles.offerName}>La Chapelle Nord</Text>
+              <Text style={styles.offerName}>{storyTitle}</Text>
               <Text style={styles.offerDesc}>30 épisodes</Text>
             </View>
             <View style={styles.offerPriceRow}>
