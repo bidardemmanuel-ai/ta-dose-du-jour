@@ -1,3 +1,5 @@
+import { useRef } from 'react';
+
 import { router } from 'expo-router';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -31,10 +33,13 @@ const CATALOG = [
 ];
 
 export default function HomeScreen() {
+  const scrollRef = useRef<ScrollView>(null);
+  const catalogY = useRef(0);
+
   return (
     <ThemedView style={styles.container}>
       <SafeAreaView style={styles.safeArea} edges={['top', 'left', 'right']}>
-        <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
+        <ScrollView ref={scrollRef} contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
           <View style={styles.header}>
             <View style={styles.headerLeft}>
               <ThemedText type="small" style={styles.brand}>MINI ROMANS</ThemedText>
@@ -42,7 +47,7 @@ export default function HomeScreen() {
             </View>
             <Pressable
               style={({ pressed }) => [styles.subscribeButton, pressed && styles.subscribePressed]}
-              onPress={() => router.push('/abonnement')}
+              onPress={() => scrollRef.current?.scrollTo({ y: Math.max(0, catalogY.current - 12), animated: true })}
               hitSlop={8}
             >
               <Text style={styles.subscribeText} numberOfLines={1} adjustsFontSizeToFit>S’abonner</Text>
@@ -67,7 +72,10 @@ export default function HomeScreen() {
               <Text style={styles.featuredCta}>Voir les épisodes →</Text>
           </Pressable>
 
-          <Text style={styles.sectionTitle}>Romans disponibles</Text>
+          <Text
+            style={styles.sectionTitle}
+            onLayout={(e) => { catalogY.current = e.nativeEvent.layout.y; }}
+          >Romans disponibles</Text>
 
           <View style={styles.catalog}>
             {CATALOG.map((story, i) => (
