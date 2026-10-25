@@ -11,7 +11,7 @@ const FEATURES = [
   'Un épisode chaque jour, directement dans l’app',
   'Des histoires complètes en 30 jours',
   'La lecture en 3 minutes, où que tu sois',
-  'Annulable à tout moment, sans justification',
+  'Ton roman accessible à vie dans l’app',
 ];
 
 export default function AbonnementScreen() {
@@ -20,7 +20,7 @@ export default function AbonnementScreen() {
       <Stack.Screen
         options={{
           headerShown: true,
-          headerTitle: 'S’abonner',
+          headerTitle: 'Acheter',
           headerStyle: { backgroundColor: '#000' },
           headerTintColor: '#fff',
           headerTitleStyle: { fontWeight: '500' },
@@ -37,12 +37,11 @@ export default function AbonnementScreen() {
 
           <View style={styles.offer}>
             <View style={styles.offerTop}>
-              <Text style={styles.offerName}>Abonnement mensuel</Text>
-              <Text style={styles.offerDesc}>La Chapelle Nord — 30 épisodes</Text>
+              <Text style={styles.offerName}>1 roman — 30 épisodes</Text>
+              <Text style={styles.offerDesc}>La Chapelle Nord</Text>
             </View>
             <View style={styles.offerPriceRow}>
-              <Text style={styles.offerPrice}>4,99 €</Text>
-              <Text style={styles.offerPer}>/ mois</Text>
+              <Text style={styles.offerPrice}>0,99 €</Text>
             </View>
           </View>
 
@@ -56,11 +55,11 @@ export default function AbonnementScreen() {
           </View>
 
           <Pressable style={({ pressed }) => [styles.cta, pressed && styles.ctaPressed]} onPress={() => {}}>
-            <Text style={styles.ctaText}>S’abonner maintenant</Text>
+            <Text style={styles.ctaText}>Payer</Text>
           </Pressable>
 
           <Text style={styles.legal}>
-            Paiement via l’App Store. Renouvellement automatique chaque mois. Annulable à tout moment dans les réglages de ton compte Apple.
+            Paiement via l’App Store. Achat unique, sans renouvellement automatique.
           </Text>
         </ScrollView>
       </SafeAreaView>
