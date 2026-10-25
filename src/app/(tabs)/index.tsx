@@ -16,7 +16,7 @@ const FEATURED = {
   title: 'La Chapelle Nord',
   tagline: '30 jours. 30 épisodes. Une banlieue qui brûle.',
   episodes: 30,
-  unlocked: 3,
+  unlocked: 1,
 };
 
 // Catalogue provisoire : 9 autres minis romans à venir.
@@ -43,7 +43,8 @@ export default function HomeScreen() {
           <View style={styles.header}>
             <View style={styles.headerLeft}>
               <ThemedText type="small" style={styles.brand}>MINI ROMANS</ThemedText>
-              <Text style={styles.title}>Ta dose du jour</Text>
+              <Text style={styles.title} numberOfLines={1} adjustsFontSizeToFit>Ta dose du jour</Text>
+              <Text style={styles.promise}>Le premier épisode de chaque roman gratuit.</Text>
             </View>
             <Pressable
               style={({ pressed }) => [styles.subscribeButton, pressed && styles.subscribePressed]}
@@ -132,6 +133,12 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: '500',
     letterSpacing: 0.3,
+  },
+  promise: {
+    color: 'rgba(255,255,255,0.5)',
+    fontSize: 11,
+    fontWeight: '300',
+    marginTop: 3,
   },
   separator: {
     height: 1,
