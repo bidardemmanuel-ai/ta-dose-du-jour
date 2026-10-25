@@ -11,7 +11,6 @@ const FEATURES = [
   'Un épisode chaque jour, directement dans l’app',
   'Des histoires complètes en 30 jours',
   'La lecture en 3 minutes, où que tu sois',
-  'Ton roman accessible à vie dans l’app',
 ];
 
 export default function AbonnementScreen() {
@@ -32,13 +31,13 @@ export default function AbonnementScreen() {
           <Text style={styles.kicker}>MINI ROMANS</Text>
           <Text style={styles.title}>Ta dose quotidienne de fiction</Text>
           <Text style={styles.subtitle}>
-            Des micronouvelles qui te tiennent en haleine, un épisode par jour, directement sur ton téléphone.
+            Des micronouvelles qui te tiennent en haleine, un épisode par jour.
           </Text>
 
           <View style={styles.offer}>
             <View style={styles.offerTop}>
-              <Text style={styles.offerName}>1 roman — 30 épisodes</Text>
-              <Text style={styles.offerDesc}>La Chapelle Nord</Text>
+              <Text style={styles.offerName}>La Chapelle Nord</Text>
+              <Text style={styles.offerDesc}>30 épisodes</Text>
             </View>
             <View style={styles.offerPriceRow}>
               <Text style={styles.offerPrice}>0,99 €</Text>
