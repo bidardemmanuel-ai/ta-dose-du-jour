@@ -142,10 +142,9 @@ const styles = StyleSheet.create({
     lineHeight: 19,
   },
   topRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: 'column',
     alignItems: 'flex-start',
-    gap: 12,
+    gap: 10,
   },
   topTexts: {
     flexShrink: 1,
