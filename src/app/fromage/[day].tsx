@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
     backgroundColor: BUTTON,
     borderRadius: 16,
     padding: 20,
-    alignItems: 'flex-start',
+    alignItems: 'center',
     gap: 10,
     marginTop: 16,
   },
@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
     transform: [{ scale: 0.98 }],
   },
   ctaTexts: {
-    alignItems: 'flex-start',
+    alignItems: 'center',
     gap: 2,
   },
   ctaStory: {
