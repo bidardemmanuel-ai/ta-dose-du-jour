@@ -50,7 +50,7 @@ export default function HomeScreen() {
               onPress={() => scrollRef.current?.scrollTo({ y: Math.max(0, catalogY.current - 12), animated: true })}
               hitSlop={8}
             >
-              <Text style={styles.subscribeText} numberOfLines={1} adjustsFontSizeToFit>S’abonner</Text>
+              <Text style={styles.subscribeText} numberOfLines={1} adjustsFontSizeToFit>Acheter</Text>
             </Pressable>
           </View>
 
@@ -93,7 +93,7 @@ export default function HomeScreen() {
             ))}
           </View>
 
-          <Text style={styles.footer}>Abonnement 4,99 €/mois · Annulable à tout moment</Text>
+          <Text style={styles.footer}>Romans à 0,99 € · Achat unique</Text>
         </ScrollView>
       </SafeAreaView>
     </ThemedView>
