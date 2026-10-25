@@ -12,7 +12,7 @@ const BUTTON = '#d8bc8f';
 const FEATURED = {
   id: 'chapelle-nord',
   title: 'La Chapelle Nord',
-  tagline: '30 jours. 30 épisodes. Une banlieue qui brûle.',
+  tagline: 'Une banlieue qui brûle.',
   episodes: 30,
   unlocked: 1,
 };
