@@ -97,6 +97,7 @@ export default function FromageDeLaHonteScreen() {
                     ) : (
                       <Text style={styles.soonText}>À venir</Text>
                     )}
+                  </View>
               );
 
               return (
