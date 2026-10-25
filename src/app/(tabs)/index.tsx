@@ -86,7 +86,10 @@ export default function HomeScreen() {
                     <Text style={styles.storyTitle}>{story.title}</Text>
                     <Text style={styles.storyTagline}>{story.tagline}</Text>
                   </View>
-                  {i >= CATALOG.length - 2 ? <Text style={styles.soonText}>Bientôt</Text> : null}
+                  <View style={styles.priceCol}>
+                    <Text style={styles.priceText}>0,99 €</Text>
+                    {i >= CATALOG.length - 2 ? <Text style={styles.soonText}>Bientôt</Text> : null}
+                  </View>
                 </View>
                 {i < CATALOG.length - 1 ? <View style={styles.rowSeparator} /> : null}
               </View>
@@ -219,7 +222,7 @@ const styles = StyleSheet.create({
   },
   storyRow: {
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     justifyContent: 'space-between',
     gap: 12,
     paddingVertical: 14,
@@ -245,6 +248,18 @@ const styles = StyleSheet.create({
     fontSize: 11,
     fontWeight: '300',
     lineHeight: 16,
+  },
+  priceCol: {
+    alignItems: 'flex-end',
+    flexShrink: 0,
+    gap: 2,
+    paddingTop: 1,
+  },
+  priceText: {
+    color: ACCENT,
+    fontSize: 9,
+    fontWeight: '300',
+    letterSpacing: 1,
   },
   soonText: {
     color: ACCENT,
