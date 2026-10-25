@@ -104,8 +104,8 @@ export default function EpisodeScreen() {
               onPress={() => router.push('/abonnement')}
             >
               <View style={styles.ctaTexts}>
-              <Text style={styles.ctaText}>S’abonner pour lire la suite</Text>
-              <Text style={styles.ctaPrice}>4,99 €/mois</Text>
+              <Text style={styles.ctaText}>Acheter le roman La Chapelle Nord pour lire la suite</Text>
+              <Text style={styles.ctaPrice}>0,99 €</Text>
             </View>
             </Pressable>
           )}
