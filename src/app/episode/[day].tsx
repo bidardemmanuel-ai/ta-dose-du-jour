@@ -104,7 +104,7 @@ export default function EpisodeScreen() {
               onPress={() => router.push('/abonnement')}
             >
               <View style={styles.ctaTexts}>
-              <Text style={styles.ctaText}>Acheter le roman La Chapelle Nord pour lire la suite</Text>
+              <Text style={styles.ctaText}>Acheter La Chapelle Nord pour lire la suite</Text>
               <Text style={styles.ctaPrice}>0,99 €</Text>
             </View>
             </Pressable>
@@ -218,9 +218,10 @@ const styles = StyleSheet.create({
     letterSpacing: 0.3,
   },
   ctaPrice: {
-    color: '#000',
-    fontSize: 12,
-    fontWeight: '700',
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: '800',
     letterSpacing: 0.3,
+    marginTop: 2,
   },
 });
