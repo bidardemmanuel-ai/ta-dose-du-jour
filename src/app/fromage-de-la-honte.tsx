@@ -62,10 +62,6 @@ export default function FromageDeLaHonteScreen() {
       <SafeAreaView style={styles.safeArea} edges={['left', 'right']}>
         <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
           <View style={styles.topRow}>
-            <View style={styles.topTexts}>
-              <Text style={styles.kicker}>POLAR ABSURDE · 30 ÉPISODES</Text>
-              <Text style={styles.tagline}>Trafic de Pont-L’Évêque à Caen. Deux losers, une 2CV, zéro plan.</Text>
-            </View>
             <Pressable
               style={({ pressed }) => [styles.buyButton, pressed && styles.buyPressed]}
               onPress={() => router.push('/abonnement?roman=fromage-de-la-honte')}
@@ -73,6 +69,10 @@ export default function FromageDeLaHonteScreen() {
             >
               <Text style={styles.buyText}>Acheter</Text>
             </Pressable>
+            <View style={styles.topTexts}>
+              <Text style={styles.kicker}>POLAR ABSURDE · 30 ÉPISODES</Text>
+              <Text style={styles.tagline}>Trafic de Pont-L’Évêque à Caen. Deux losers, une 2CV, zéro plan.</Text>
+            </View>
           </View>
 
           <View style={styles.list}>
