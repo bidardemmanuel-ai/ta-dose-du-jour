@@ -1,4 +1,4 @@
-import { router } from 'expo-router';
+import { Link, router } from 'expo-router';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -66,7 +66,10 @@ export default function HomeScreen() {
           <View style={styles.catalog}>
             {CATALOG.map((story, i) => (
               <View key={story.id}>
-                <View style={styles.storyRow}>
+                {story.id === '1' ? (
+                  <Link href="/fromage-de-la-honte" asChild>
+                    <Pressable style={({ pressed }) => [styles.rowPress, pressed && styles.rowPressed]}>
+                      <View style={styles.storyRow}>
                   <View style={styles.storyTexts}>
                     <Text style={styles.storyGenre}>{story.genre}</Text>
                     <Text style={styles.storyTitle}>{story.title}</Text>
@@ -76,7 +79,22 @@ export default function HomeScreen() {
                     <Text style={styles.priceText}>0,99 €</Text>
                     {i >= CATALOG.length - 2 ? <Text style={styles.soonText}>Bientôt</Text> : null}
                   </View>
-                </View>
+                      </View>
+                    </Pressable>
+                  </Link>
+                ) : (
+                  <View style={styles.storyRow}>
+                    <View style={styles.storyTexts}>
+                      <Text style={styles.storyGenre}>{story.genre}</Text>
+                      <Text style={styles.storyTitle}>{story.title}</Text>
+                      <Text style={styles.storyTagline}>{story.tagline}</Text>
+                    </View>
+                    <View style={styles.priceCol}>
+                      <Text style={styles.priceText}>0,99 €</Text>
+                      {i >= CATALOG.length - 2 ? <Text style={styles.soonText}>Bientôt</Text> : null}
+                    </View>
+                  </View>
+                )}
                 {i < CATALOG.length - 1 ? <View style={styles.rowSeparator} /> : null}
               </View>
             ))}
@@ -194,6 +212,10 @@ const styles = StyleSheet.create({
   },
   catalog: {
     gap: 0,
+  },
+  rowPress: {},
+  rowPressed: {
+    opacity: 0.7,
   },
   storyRow: {
     flexDirection: 'row',
