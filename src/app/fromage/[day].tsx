@@ -16,20 +16,21 @@ const EPISODES: Record<string, Episode> = {
   '1': {
     title: 'La nuit du camembert',
     paragraphs: [
-      '23h17. Le fourgon blanc ronronne place du Marché, moteur au ralenti, comme un vieux chat qui aurait trop mangé. Dedans, Gégé compte les caisses. Trois. Il en manque une.',
+      '23h17. La fourgonnette verte ronronne place du Marché, moteur au ralenti, comme un gros matou qu’on caresse. A l’intérieur, Gégé compte les méga camemberts, 30 kg la bête ! Trois. Putain, il en manque un.',
       '« T’as compté combien ? » demande Marco au téléphone. Gégé répond trois. Silence radio pendant dix secondes. Chez Marco, dix secondes de silence, c’est une déclaration de guerre.',
-      '« Trois ?! On en avait QUATRE. T’as égaré une caisse de pont-l’évêque où, sur le parking ? »',
-      'Gégé regarde le rétroviseur. Le parking est désert. Il pleut comme il pleut en Normandie, c’est-à-dire sérieusement. Sur la banquette arrière, les trois caisses restantes sentent la ferme et l’argent. L’odeur de toute une vie. De la sienne, en tout cas.',
-      '« J’ai rien perdu, dit Gégé. C’est le fromage qui a disparu. » Marco ne répond pas. Dans le trafic de fromage AOP, il n’y a qu’une règle : on ne perd pas la marchandise. On peut perdre son permis, sa carte Sim, sa copine. Pas la marchandise.',
-      'Gégé met les warnings, descend, marche jusqu’à la borne. Sur le bitume, une traînée blanche. Pas de la farine. De la moisissure. Une meule a roulé jusque-là, blessée, et a laissé sa trace comme un blessé laisse son sang.',
-      '« Marco. Il y a une traînée. » Nouveau silence. Puis, très bas : « Suis la meule. Et surtout : personne ne doit savoir. On n’est pas des trafiquants. On est des artisans. »',
+      '« Trois ?! On en avait QUATRE. T’as égaré une meule de camembert… sur le parking ? »',
+      'Merde Marco là tu m’insulte, on dit une meule pour du comté, pas pour un méga claquos … OK ?',
+      'Gégé regarde dans le rétroviseur. Le parking est désert. Il pleut comme comme vache qui pisse dirait son pépé. Sur la banquette arrière, les trois mégas claquos restants sentent l’étable et l’argent. L’odeur de toute une vie. De la sienne, en tout cas.',
+      '« J’ai rien perdu, dit Gégé. C’est le fromage qui a disparu. » Marco ne répond pas. Dans le trafic de fromage AOP, il n’y a qu’une règle : on ne perd pas la marchandise. On peut perdre son permis, sa carte Sim, sa meuf mais pas la marchandise.',
+      'Gégé met les warnings et descend. Sur le bitume, une traînée blanche. Pas de la farine. De la moisissure. Le méga claquos a roulé, blessé, et a laissé sa trace comme un homme qui rampe et se vide de son sang.',
+      '« Marco. Il y a une traînée. » Nouveau silence. Puis, très bas : « Suis la trace blanche Gégé, ett surtout : personne ne doit savoir. On n’est pas des trafiquants. On est des putains d’artisans. »',
     ],
   },
 };
 
 export default function FromageEpisodeScreen() {
   const { day } = useLocalSearchParams<{ day: string }>();
-  const episode = EPISODES[day ?? '1'] ?? { title: 'Épisode à venir', paragraphs: [] };
+  const episode = EPISODES[day ?? '1'] ?? { title: 'Episode a venir', paragraphs: [] };
 
   return (
     <ThemedView style={styles.container}>
