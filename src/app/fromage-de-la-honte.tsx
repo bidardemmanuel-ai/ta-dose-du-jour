@@ -1,10 +1,11 @@
-import { Stack } from 'expo-router';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Stack, router } from 'expo-router';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { ThemedView } from '@/components/themed-view';
 
 const ACCENT = '#e5ceac';
+const BUTTON = '#d8bc8f';
 
 const TOTAL = 30;
 const TODAY = 1; // épisode du jour
@@ -60,8 +61,19 @@ export default function FromageDeLaHonteScreen() {
       />
       <SafeAreaView style={styles.safeArea} edges={['left', 'right']}>
         <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
-          <Text style={styles.kicker}>POLAR ABSURDE · 30 ÉPISODES</Text>
-          <Text style={styles.tagline}>Trafic de Pont-L’Évêque à Caen. Deux losers, une 2CV, zéro plan.</Text>
+          <View style={styles.topRow}>
+            <View style={styles.topTexts}>
+              <Text style={styles.kicker}>POLAR ABSURDE · 30 ÉPISODES</Text>
+              <Text style={styles.tagline}>Trafic de Pont-L’Évêque à Caen. Deux losers, une 2CV, zéro plan.</Text>
+            </View>
+            <Pressable
+              style={({ pressed }) => [styles.buyButton, pressed && styles.buyPressed]}
+              onPress={() => router.push('/abonnement?roman=fromage-de-la-honte')}
+              hitSlop={8}
+            >
+              <Text style={styles.buyText}>Acheter</Text>
+            </Pressable>
+          </View>
 
           <View style={styles.list}>
             {days.map((day) => {
@@ -118,6 +130,33 @@ const styles = StyleSheet.create({
     fontSize: 13,
     fontWeight: '300',
     lineHeight: 19,
+  },
+  topRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    gap: 12,
+  },
+  topTexts: {
+    flexShrink: 1,
+    gap: 6,
+  },
+  buyButton: {
+    backgroundColor: BUTTON,
+    paddingHorizontal: 14,
+    paddingVertical: 7,
+    borderRadius: 999,
+    flexShrink: 0,
+  },
+  buyPressed: {
+    opacity: 0.8,
+    transform: [{ scale: 0.97 }],
+  },
+  buyText: {
+    color: '#000',
+    fontWeight: '700',
+    fontSize: 12,
+    letterSpacing: 0.3,
   },
   list: {
     marginTop: 4,
