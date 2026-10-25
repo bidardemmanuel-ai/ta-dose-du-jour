@@ -1,4 +1,4 @@
-import { Stack, router } from 'expo-router';
+import { Link, Stack, router } from 'expo-router';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -81,8 +81,7 @@ export default function FromageDeLaHonteScreen() {
               const isAvailable = day <= TODAY;
               const title = TITLES[day] ?? 'Épisode à venir';
 
-              return (
-                <View key={day}>
+              const row = (
                   <View style={[styles.row, isToday && styles.rowToday]}>
                     <Text style={[styles.day, isToday ? styles.dayToday : styles.dayLocked]}>
                       J{day}
@@ -98,7 +97,17 @@ export default function FromageDeLaHonteScreen() {
                     ) : (
                       <Text style={styles.soonText}>À venir</Text>
                     )}
-                  </View>
+              );
+
+              return (
+                <View key={day}>
+                  {isAvailable ? (
+                    <Link href={'/fromage/' + day} asChild>
+                      <Pressable style={({ pressed }) => [styles.rowPress, pressed && styles.rowPressed]}>{row}</Pressable>
+                    </Link>
+                  ) : (
+                    row
+                  )}
                   {day < TOTAL ? <View style={styles.rowSeparator} /> : null}
                 </View>
               );
@@ -160,6 +169,10 @@ const styles = StyleSheet.create({
   },
   list: {
     marginTop: 4,
+  },
+  rowPress: {},
+  rowPressed: {
+    opacity: 0.7,
   },
   row: {
     flexDirection: 'row',
