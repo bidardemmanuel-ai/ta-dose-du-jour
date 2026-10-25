@@ -130,14 +130,14 @@ const styles = StyleSheet.create({
   },
   title: {
     color: '#fff',
-    fontSize: 22,
+    fontSize: 26,
     fontWeight: '500',
     letterSpacing: 0.3,
   },
   promise: {
-    color: 'rgba(255,255,255,0.5)',
-    fontSize: 11,
-    fontWeight: '300',
+    color: '#fff',
+    fontSize: 13,
+    fontWeight: '400',
     marginTop: 3,
   },
   separator: {
