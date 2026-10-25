@@ -41,7 +41,7 @@ export default function ChapelleNordScreen() {
             </View>
             <Pressable
               style={({ pressed }) => [styles.buyButton, pressed && styles.buyPressed]}
-              onPress={() => router.push('/abonnement')}
+              onPress={() => router.push('/abonnement?roman=chapelle-nord')}
               hitSlop={8}
             >
               <Text style={styles.buyText}>Acheter</Text>
